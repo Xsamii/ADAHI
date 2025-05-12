@@ -1,0 +1,33 @@
+// .metrics-panel {
+//   display: grid;
+//   grid-template-columns: repeat(4, 1fr);
+//   gap: 16px;
+//   padding: 16px;
+//   /* background-color: var(--panel-background); */
+//   border-radius: 8px;
+//   box-shadow: var(--panel-shadow);
+//   height: 3vh;
+// }
+
+// app-urban-metrics {
+//   grid-column: 1 / 2;
+//   grid-row: 1 / 2;
+// }
+
+// app-urban-survey {
+//   grid-column: 2 / 3;
+//   grid-row: 1 / 2;
+// }
+
+// app-border-mapping {
+//   grid-column: 3 / 4;
+//   grid-row: 1 / 2;
+// }
+
+// app-informal-areas {
+//   grid-column: 4 / 5;
+//   grid-row: 1 / 2;
+// }
+.cardContainersmall {
+  @apply flex items-center justify-between 2xl:col-span-3 xl:col-span-3 lg:col-span-6  md:col-span-6 col-span-12;
+}

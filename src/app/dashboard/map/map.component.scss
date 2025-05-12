@@ -1,0 +1,98 @@
+.map-container {
+  flex-grow: 1;
+  position: relative;
+  height: 69vh;
+  /* width: 79vw; */
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .map-container {
+    height: 400px;
+    width: 100%;
+  }
+}
+// .bigDiv {
+//   // position: absolute;
+
+//   z-index: 500;
+// }
+.layersCard {
+  background: linear-gradient(
+    150.57deg,
+    rgba(12, 88, 139, 0.162) 15.91%,
+    rgba(21, 90, 138, 0.186) 48.08%,
+    rgba(38, 94, 135, 0.184) 88.94%
+  );
+  margin: 0 20px 20px;
+  z-index: 1001;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .close-btn {
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+}
+:host ::ng-deep .p-card-body {
+  padding: 1rem;
+}
+:host ::ng-deep .p-card {
+  padding: 1rem;
+}
+
+:host ::ng-deep .p-component {
+  @apply rounded-lg;
+  padding: 1rem;
+}
+:host ::ng-deep .p-card-header {
+  display: flex;
+  justify-content: space-between;
+}
+:host ::ng-deep .esri-component.esri-fullscreen.esri-widget {
+  color: #887852;
+  background-color: white;
+  border-radius: 50% !important;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  -ms-border-radius: 50% !important;
+  -o-border-radius: 50% !important;
+}
+:host ::ng-deep .esri-widget--button {
+  border-radius: 50%;
+}
+:host ::ng-deep {
+  .esri-basemap-gallery__item-content {
+    display: none; /* This hides the label */
+    visibility: collapse;
+  }
+  .esri-basemap-gallery__item-container {
+    flex-flow: row;
+  }
+}
+#legendContainer {
+  opacity: 0.7;
+  width: 15rem;
+  height: 20rem;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+:host ::ng-deep .esri-view-surface {
+  @apply rounded-lg;
+}
+:host ::ng-deep .esri-popup__main-container {
+  min-height: fit-content !important;
+  border-radius: 10px;
+}

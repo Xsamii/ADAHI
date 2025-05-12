@@ -1,0 +1,25 @@
+/* Full-screen container with a border */
+.full-screen-box {
+  display: flex;
+  flex-direction: row; /* Stack sections horizontally */
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  border: 4px double black; /* Double border with thickness */
+  box-sizing: border-box; /* Include border in element's width/height */
+  // font-family: 'Times New Roman'  , 'Helvetica', 'sans-serif' !important;
+}
+
+/* Section styles */
+.section {
+  /* Padding for inner content */
+}
+
+/* Larger section (takes more space) */
+.large-section {
+  flex: 4; /* Adjust this value to control size ratio */
+}
+
+/* Smaller section */
+.small-section {
+  flex: 1; /* Adjust this value to control size ratio */
+}

@@ -1,0 +1,45 @@
+<p-card>
+  <div class="flex flex-col p-2 space-y-2">
+    <h1>Location</h1>
+
+    <div class="flex flex-col space-y-2">
+      <label for="">Select Floor</label>
+      <p-dropdown
+        [options]="floors"
+        [(ngModel)]="selectedFloor"
+        optionLabel="name"
+        placeholder="Select Floor"
+        class="w-full border-2 border-gray-100 rounded-lg p-1"
+        styleClass="w-full"
+        inputStyleClass="w-full"
+        (onChange)="onFloorChange($event)"
+      ></p-dropdown>
+
+      <label for="">Select Building</label>
+
+      <p-multiSelect
+        [options]="buildings"
+        [(ngModel)]="selectedBuildings"
+        optionLabel="name"
+        placeholder="Select Building"
+        class="w-full border-2 border-gray-100 rounded-lg p-1"
+        styleClass="w-full"
+        inputStyleClass="w-full"
+        (onChange)="onBuildingChange($event)"
+      />
+
+      <label for="">Select Rooms</label>
+
+      <p-multiSelect
+        [options]="rooms"
+        [(ngModel)]="selectedRooms"
+        optionLabel="name"
+        placeholder="Select Room"
+        class="w-full border-2 border-gray-100 rounded-lg p-1"
+        styleClass="w-full"
+        inputStyleClass="w-full"
+        (onChange)="onRoomChange($event)"
+      />
+    </div>
+  </div>
+</p-card>

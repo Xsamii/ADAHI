@@ -1,0 +1,60 @@
+<div class="map-container p-5 pt-0 rounded-lg">
+  <!-- <button (click)="testClick()">test query</button> -->
+  <div id="map">
+    <!-- <div class="mapView rounded-lg" #mapView> -->
+    <app-card-modal [toggler]="layerListToggler" [header]="'قائمة الطبقات'">
+      <div id="layerListDiv" style="height: 400px; width: 400px"></div>
+    </app-card-modal>
+    <app-card-modal [toggler]="basemapToggler" header="خريطة الاساس">
+      <div
+        id="baseMapDiv"
+        style="height: 150px; width: 380px; display: flex"
+      ></div>
+    </app-card-modal>
+    <div
+      id="legendContainer"
+      style="position: absolute; bottom: 10px; left: 10px; z-index: 2000"
+    ></div>
+    <app-card-modal [toggler]="infoToggler" header="تفاصيل ">
+      <div class="flex flex-col justify-center w-96">
+        <div>
+          <img src="assets/images/mekkah-logo.svg" alt="" />
+        </div>
+        <div>
+          <p>
+            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
+            النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد
+            من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق. هذا
+            النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
+            النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد
+            من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق. هذا
+            النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
+            النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد
+            من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
+          </p>
+        </div>
+      </div>
+    </app-card-modal>
+    <app-side-widgets />
+    <!-- </div> -->
+  </div>
+</div>
+
+<!-- <p-dialog header="Edit Profile" [modal]="true" [(visible)]="displayLayerList" [style]="{ width: '25rem' }">
+  <div id="layerListDiv" style="height: 300px"></div>
+
+</p-dialog> -->
+
+<!-- <p-card header="قائمة الطبقات" class="layersCard " [ngStyle]="{'visibility': displayLayerList ? 'hidden' : 'visible'}">
+
+
+  <div id="layerListDiv" style="height: 300px; width: 360px;"></div>
+
+
+</p-card> -->
+
+<!-- <div id="layerListDiv" style="height: 300px"></div> -->
+<!-- <app-layer-list-dialog /> -->
+
+<!-- <div id="test1"></div> -->
+<!-- <div id="layerListDiv" style="height: 300px"></div> -->

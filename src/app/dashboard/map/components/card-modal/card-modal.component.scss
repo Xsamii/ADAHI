@@ -1,0 +1,76 @@
+.layersCard {
+  background: linear-gradient(
+    150.57deg,
+    rgba(12, 88, 139, 0.162) 15.91%,
+    rgba(21, 90, 138, 0.186) 48.08%,
+    rgba(38, 94, 135, 0.184) 88.94%
+  );
+  z-index: 1001;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .close-btn {
+    // background: none;
+    // border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    // position: absolute;
+  }
+}
+:host ::ng-deep .p-card-body {
+  @apply flex items-center;
+  padding: 1rem;
+}
+:host ::ng-deep #layerListDiv {
+  // @apply h-[380px];
+  // padding: 1rem;
+}
+:host ::ng-deep .p-card {
+  padding: 1rem;
+}
+
+:host ::ng-deep .p-component {
+  padding: 1rem;
+}
+:host ::ng-deep .p-card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+:host ::ng-deep .esri-layer-list__item-content {
+  font-size: 1.3rem;
+}
+
+:host ::ng-deep {
+  .esri-slider__thumb {
+    background-color: #0079c1;
+  }
+  // .esri-slider__track {
+  //   width: 110%;
+  // }
+
+  // .esri-slider {
+  //   @apply ml-10;
+  //   width: 110%;
+  // }
+  // .content-bottom {
+  //   width: 110%;
+  // }
+  .esri-layer-list__item-content-bottom {
+    width: 102%; /* Adjust this to your preferred width */
+    position: relative;
+    left: 23px; /* Adjust this value to move it right */
+    overflow: hidden;
+  }
+
+  /* Ensure the slider track and the entire slider scale accordingly */
+  .esri-slider__track,
+  .esri-slider {
+    width: 100%; /* Make the slider stretch to fit the new container width */
+  }
+}

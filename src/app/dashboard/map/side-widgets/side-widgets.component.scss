@@ -1,0 +1,46 @@
+.btn-sidemenu-icon {
+  position: absolute;
+  right: 45px;
+  top: 0;
+  bottom: 0;
+  height: fit-content;
+  margin: auto;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  pointer-events: none;
+  .btn-tabel:first-child {
+    // margin-top: 7px;
+  }
+  .btns {
+    pointer-events: all;
+    width: 37px;
+    height: 37px;
+    background-color: #887852;
+    border-radius: 60%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 3px 2px #0000004d;
+    -webkit-border-radius: 60%;
+    -moz-border-radius: 60%;
+    -ms-border-radius: 60%;
+    -o-border-radius: 60%;
+  }
+}
+
+@media print {
+  @page {
+      size: A3 landscape;
+      margin: 0 !important;
+  }
+  #elementToHide {
+      display: none;
+    }
+    :host ::ng-deep .esri-ui-top-right{
+      display: none;
+    }
+}

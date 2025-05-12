@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --header-height: 60px;
+  --side-panel-width: 300px;
+  --background-color: #f5f5f5;
+  --primary-color: #ffffff;
+  --secondary-color: #e0e0e0;
+  --text-color: #333333;
+  --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body,
+html {
+  max-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow: hidden;
+}
+::ng-deep .p-card{
+ margin: 7.5px 15px  !important;
+}

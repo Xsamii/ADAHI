@@ -1,0 +1,70 @@
+<!-- ================================ -->
+<!-- START RIGHT MENU BAR -->
+<!-- ================================ -->
+<div id="elementToHide" class="btn-sidemenu-icon bg-white rounded-full p-2">
+  <!-- TABEL ICON -->
+  <button (click)="zoomIn()" class="btns btn-tabel mov">
+    <img src="../../../../assets/images\zoomInIcon.svg" />
+  </button>
+  <button (click)="zoomOut()" class="btns btn-tabel mov">
+    <img src="../../../../assets/images/zoomOutIcon.svg" />
+  </button>
+  <!-- <button class="btns btn-tabel mov">
+    <img src="../../../../assets/images/tabel.svg" />
+  </button> -->
+  <!-- HAND ICON -->
+  <!-- <button class="btns btn-sub-search mov">
+    <img src="../../../../assets/images/hand.svg" />
+  </button> -->
+  <!-- HOME ICON -->
+  <button (click)="goHome()" class="btns btn-home mov">
+    <img src="../../../../assets/images/homeIcon.svg" />
+  </button>
+  <!-- PREV ICON -->
+  <button (click)="goBackExtent()" class="btns btn-prev mov" id="zoomPrevBtn">
+    <!--esri-widget--button esri-widget esri-disabled-->
+    <img src="../../../../assets/images/prevIcon.svg" />
+  </button>
+  <!-- NEXT ICON -->
+  <button (click)="goForwardExtent()" class="btns btn-next mov" id="zoomNextBtn">
+    <!--esri-widget--button esri-widget esri-disabled-->
+    <img src="../../../../assets/images/nextIcon.svg" />
+  </button>
+  <!-- LAYERS ICON -->
+  <button (click)="toggleLayerList()" class="btns btn-layers mov">
+    <img src="../../../../assets/images/layerIcon.svg" />
+  </button>
+  <!-- SWITCH MAP ICON -->
+  <button (click)="toggleBaseMap()" class="btns btn-switch-map mov">
+    <img src="../../../../assets/images/switchMapIcon.svg" />
+  </button>
+  <!-- PRINT  ICON -->
+  <button class="btns btn-details mov" (click)="printScreen()">
+    <img src="../../../../assets/icons/print.svg" />
+  </button>
+  <!-- PDF EXPORT ICON -->
+  <button class="btns btn-details mov" (click)="exportToPDF()">
+    <img src="../../../../assets/images/pdfExpo.svg" />
+  </button>
+  <!-- DETAILS ICON -->
+  <button class="btns btn-details mov" (click)="showPopup()">
+    <img src="../../../../assets/images/detailsIcon.svg" />
+  </button>
+
+</div>
+
+
+<app-pdf-report *ngIf="isPrinting"></app-pdf-report>
+
+
+<!-- <div class="full-screen-box w-full h-full" *ngIf="isPrinting" #pdfContent >
+
+
+  <div class="section small-section border-[1px] border-black">
+    <p>Content of the smaller section</p>
+  </div>
+  <div class="section large-section border-[1px] border-black">
+    <p>Content of the larger section</p>
+  </div>
+
+</div> -->
