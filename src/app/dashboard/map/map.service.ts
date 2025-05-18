@@ -707,6 +707,15 @@ export class MapService {
         filter
       );
 
+      let featuresExtent = roomResult.features[0].geometry.extent.clone();
+      // console.log('feature layer', featureLayer);
+      // Iterate over the rest of the features to union their extents
+      roomResult.features.forEach((feature) => {
+        featuresExtent = featuresExtent.union(feature.geometry.extent);
+      });
+
+      this.mapView?.goTo(featuresExtent.expand(1));
+
       // const targetResult = await targetLayer.queryFeatures(spatialQuery);
 
       // const objectIds = targetResult.features.map(
