@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { DashboardService } from '../../dashboard.service';
 
 interface City {
   name: string;
@@ -15,17 +16,27 @@ interface City {
   styleUrl: './filtering.component.scss',
 })
 export class FilteringComponent {
-  cities!: City[];
+  systems!: { name: string; selected: boolean }[];
 
-  selectedCities!: City[];
+  selectedSystems!: { name: string; selected: boolean }[];
+  /**
+   *
+   */
+  constructor(private dashboardService: DashboardService) {}
 
   ngOnInit() {
-    this.cities = [
-      { name: 'Freezing', code: 'NY' },
-      { name: 'Lighting', code: 'RM' },
-      { name: 'Water Supply', code: 'LDN' },
-      // { name: 'Istanbul', code: 'IST' },
-      // { name: 'Paris', code: 'PRS' },
-    ];
+    this.systems = this.dashboardService.systems.value;
+  }
+  onSystemChange(e) {
+    console.log('e', e.value);
+    const selectedSystems = e.value.map((sys: any) => sys.name);
+
+    this.systems.forEach((system) => {
+      if (selectedSystems.includes(system.name)) {
+        console.log('heree', system.name);
+        system.selected = true; // Set selected to true if the system is in the selectedSystems array
+      }
+    });
+    this.dashboardService.systems.next(this.systems);
   }
 }

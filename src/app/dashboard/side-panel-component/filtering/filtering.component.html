@@ -4,13 +4,14 @@
 
     <!-- <label > Systems</label> -->
     <p-multiSelect
-      [options]="cities"
-      [(ngModel)]="selectedCities"
+      [options]="systems"
+      [(ngModel)]="selectedSystems"
       optionLabel="name"
       placeholder="Select System"
       class="w-full border-2 border-gray-100 rounded-lg p-1"
       styleClass="w-full"
       inputStyleClass="w-full "
+      (onChange)="onSystemChange($event)"
     />
   </div>
 </p-card>

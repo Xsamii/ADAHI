@@ -50,6 +50,20 @@ export class DashboardService {
       { name: 'ZONE 04', selected: false },
       { name: 'ZONE 05', selected: false },
     ]);
+  systems: BehaviorSubject<{ name: string; selected: boolean }[]> =
+    new BehaviorSubject<{ name: string; selected: boolean }[]>([
+      { name: 'Waste', selected: false },
+      { name: 'belt', selected: false },
+      { name: 'AC', selected: false },
+      { name: 'REF', selected: false },
+      { name: 'Exhaust', selected: false },
+      { name: 'Ventilation', selected: false },
+      { name: 'Water Supply', selected: false },
+      { name: 'Domestic Cold Water', selected: false },
+      { name: 'Domestic Hot Water', selected: false },
+      { name: 'Drainage', selected: false },
+      { name: 'Blood Drainage', selected: false },
+    ]);
   subComponents: BehaviorSubject<
     { name: string; selected: boolean; type: string }[]
   > = new BehaviorSubject<{ name: string; selected: boolean; type: string }[]>([
@@ -109,6 +123,11 @@ export class DashboardService {
     });
     this.applyAllFilters();
     this.getuniqueRoomsNames();
+    this.systems.subscribe((v) => {
+      console.log('systems', v);
+      this.applyAllFilters();
+    });
+
     // this.mapService.filterFeatureLayers(this.featureLayers[2], '1', '1', true);
   }
 
@@ -237,6 +256,9 @@ export class DashboardService {
       .map((d) => d.name);
 
     const subSubDisciplineValues: string[] = [];
+    const systemValues: string[] = this.systems.value
+      .filter((s) => s.selected)
+      .map((s) => s.name);
 
     this.engineeringDescipline.value
       .filter((d) => d.selected)
@@ -271,6 +293,7 @@ export class DashboardService {
           { fieldName: 'Bldg_Name', values: buildingValues },
           { fieldName: 'SUB_DISCIPLINE', values: subDisciplineValues },
           { fieldName: 'SUB_SUB_DISCIPLINE', values: subSubDisciplineValues },
+          { fieldName: 'SYSTEM_NAME', values: systemValues },
         ];
       } else {
         filterFields = [
