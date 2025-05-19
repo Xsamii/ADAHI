@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { MultiSelectModule } from 'primeng/multiselect';
@@ -8,6 +8,8 @@ import {
   engineeringDisciplines,
   SubSubDiscipline,
 } from '../../Descpline';
+import { CommonModule } from '@angular/common';
+import { PreferenceService } from '../../../shared/services/preference.service';
 
 interface City {
   name: string;
@@ -17,11 +19,12 @@ interface City {
 @Component({
   selector: 'app-components',
   standalone: true,
-  imports: [CardModule, MultiSelectModule, FormsModule],
+  imports: [CardModule, MultiSelectModule, FormsModule, CommonModule],
   templateUrl: './components.component.html',
   styleUrl: './components.component.scss',
 })
 export class ComponentsComponent {
+  preference = inject(PreferenceService)
   components: { name: string; selected: boolean }[] = [];
   selectedComponent!: { name: string; selected: boolean }[];
   subComponents: { name: string; selected: boolean; type: string }[] = [];

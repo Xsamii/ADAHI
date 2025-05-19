@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { DashboardService } from '../../dashboard.service';
+import { CommonModule } from '@angular/common';
+import { PreferenceService } from '../../../shared/services/preference.service';
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
   query: string;
@@ -11,11 +13,13 @@ interface AutoCompleteCompleteEvent {
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [CardModule, AutoCompleteModule, FormsModule],
+  imports: [CardModule, AutoCompleteModule, FormsModule, CommonModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
 export class SearchComponent {
+preference = inject(PreferenceService);
+
   items: any[] | undefined;
 
   selectedItem: any;

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { PreferenceService } from '../../../shared/services/preference.service';
 
 interface City {
   name: string;
@@ -10,11 +12,12 @@ interface City {
 @Component({
   selector: 'app-filtering',
   standalone: true,
-  imports: [CardModule, MultiSelectModule, FormsModule],
+  imports: [CardModule, MultiSelectModule, FormsModule, CommonModule],
   templateUrl: './filtering.component.html',
   styleUrl: './filtering.component.scss',
 })
 export class FilteringComponent {
+  preference = inject(PreferenceService);
   cities!: City[];
 
   selectedCities!: City[];

@@ -1,16 +1,13 @@
 <header
-  class="flex items-center justify-between header dark:bg-[#000000] dark:text-white"
->
+  class="flex items-center justify-between header   px-4"
+[ngStyle]="{ 'background-color': preference.theme() === 'dark' ? '#000000' : '#F7F7F7' }"
+  >
   <!-- Logo Container -->
   <div>
     <img
-      [src]="
-        isDarkMode
-          ? 'assets/images/mekkah-logo-dark-mode.svg'
-          : 'assets/images/mekkah-logo.svg'
-      "
+     [src]="logoPath()"
       alt="Logo"
-      class="w-full px-4"
+      class="w-full py-4"
     />
   </div>
   <!-- Title and Dark Mode Toggle Container -->
@@ -35,33 +32,36 @@
     </button>
 
     <div class="flex justify-center items-center">
-      <button
-        (click)="toggleDarkMode()"
-        class="relative w-16 h-8 bg-gray-300 dark:bg-gray-700 rounded-full flex items-center px-1 transition-colors duration-300"
-      >
-        <!-- Sun Icon (Shown in Light Mode) -->
-        <img
-          src="assets/icons/sun-icon.svg"
-          alt="light-mode-icon"
-          class="h-6 w-6 absolute left-1 transition-all duration-300 transform"
-          [ngClass]="{
-            'translate-x-8 opacity-0': isDarkMode,
-            'opacity-100': !isDarkMode
-          }"
-        />
-        <!-- Moon Icon (Shown in Dark Mode) -->
-        <img
-          src="assets/icons/moon-icon.svg"
-          alt="dark-mode-icon"
-          class="h-6 w-6 absolute right-1 transition-all duration-300 transform"
-          [ngClass]="{
-            '-translate-x-8 opacity-0': !isDarkMode,
-            'opacity-100': isDarkMode
-          }"
-        />
-      </button>
+
+
+         <button
+    class="relative w-12 h-6 bg-gray-300 dark:bg-[#1E552A] rounded-full transition-colors duration-300"
+    (click)="preference.toggleTheme()"
+  >
+    <span
+      class="absolute top-0.5 left-0.5 w-5 h-5 rounded-full flex items-center justify-center text-white transition-transform duration-300"
+      [ngStyle]="{
+        transform: preference.theme() === 'dark' ? 'translateX(0)' : 'translateX(24px)'
+      }"
+      [ngClass]="{
+        'bg-[#333]': preference.theme() === 'dark',
+        'bg-[#1E552A]': preference.theme() === 'light'
+      }"
+    >
+      <i [ngClass]="preference.theme() === 'dark' ? 'pi pi-moon' : 'pi pi-sun'"></i>
+    </span>
+  </button>
+
+
+
+
+
+ <button class=" mx-2" (click)="toggleLang()">
+      <i class="pi pi-language"  ></i>
+    </button>
+
     </div>
 
-    <h1 class="font-bold text-3xl ml-7">منصة ادراة مشروع الاضاحي</h1>
+    <h1 class="font-bold text-3xl "> {{'NAV.TITLE' | translate}}</h1>
   </div>
 </header>

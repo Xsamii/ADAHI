@@ -1,7 +1,14 @@
-<div id="content"  class="h-dvh dark:bg-[#0F0F0F] dark:text-white">
+<div id="content"  class="h-dvh"
+[ngStyle]="{ 'background-color': preference.theme() === 'dark' ? '#1A1A1A' : '#FFFFFF' }"
+>
   <app-header />
-  <p-card class="w-full  overflow-hidden ">
-    <div class="flex flex-col lg:flex-row h-full dark:bg-[#121212] p-2">
+  <p-card class="w-full  overflow-hidden "
+
+
+  >
+    <div class="flex flex-col lg:flex-row h-full   p-2"
+[ngStyle]="{ 'background-color': preference.theme() === 'dark' ? '#252525' : '#FFFFFF' }"
+    >
       <!-- Side Panel -->
       <div class="lg:w-1/6 w-full lg:flex-none max-h-[30%]">
         <app-side-panel  />

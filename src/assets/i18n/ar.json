@@ -1,0 +1,36 @@
+
+{
+  "NAV":{
+    "TITLE": "منصة ادراة مشروع الاضاحي"
+  },
+  "GEOPROCESSING":
+  {"OBSERVATIONS": "عرض الملاحظات",
+  "HEATMAP": "الخريطة الحرارية",
+  "CLUSTERING": "التكتل",
+  "HEXAGON": "سداسي",
+  "FISHNET": "الشبكة"
+},
+  "FILTERS":
+  {
+    "MUNICIPALITY": "البلدية",
+    "CHOOSEMUNICIPALITY": "اختر بلدية",
+    "NEIGHBORHOOD": "الحي",
+    "CHOOSENEIGHBORHOOD": "اختر حي",
+    "ROAD": "الطريق",
+    "CHOOSEROAD": "اختر طريق",
+    "MAINCATEGORIZATION": "التصنيف الرئيسي",
+    "CHOOSEMAINCATEGORIZATION": "اختر التصنيف الرئيسي",
+    "SUBCATEGORIZATION": "التصنيف الفرعي",
+    "CHOOSESUBCATEGORIZATION": "اختر التصنيف الفرعي",
+    "MONITORINGTOUR": "جولة الرصد",
+    "CHOOSEMONITORINGTOUR": "اختر جولة الرصد",
+    "PERIOD": "الفترة",
+    "CHOOSEPERIOD": "اختر من - إلى",
+    "OPTION1": "جولة الرصد 1",
+    "OPTION2": "جولة الرصد 2",
+    "OPTION3": "جولة الرصد 3",
+    "OPTION4": "جولة الرصد 4",
+    "OPTION5": "جولة الرصد 5",
+    "OPTION6": "جولة الرصد 6"
+}
+}

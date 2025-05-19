@@ -1,19 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DashboardService } from '../../dashboard.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { tick } from '@angular/core/testing';
+import { CommonModule } from '@angular/common';
+import { PreferenceService } from '../../../shared/services/preference.service';
 
 @Component({
   selector: 'app-location',
-  imports: [CardModule, MultiSelectModule, FormsModule, DropdownModule],
+  imports: [CardModule, MultiSelectModule, FormsModule, DropdownModule, CommonModule],
   standalone: true,
   templateUrl: './location.component.html',
   styleUrl: './location.component.scss',
 })
 export class LocationComponent {
+  preference = inject(PreferenceService);
   floors: { name: string; checked: boolean }[] = [];
   /**
    *

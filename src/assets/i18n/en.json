@@ -1,0 +1,36 @@
+{
+  "NAV":{
+    "TITLE":"Al-Adahi Project Management Platform"
+  },
+"GEOPROCESSING":{  "OBSERVATIONS": "Observations",
+  "HEATMAP": "Heatmap",
+  "CLUSTERING": "Clustering",
+  "HEXAGON": "Hexagon",
+  "FISHNET": "Fishnet"
+},
+"FILTERS":
+{
+  "MUNICIPALITY": "Municipality",
+  "CHOOSEMUNICIPALITY": "Choose Municipality",
+  "NEIGHBORHOOD": "Neighborhood",
+  "CHOOSENEIGHBORHOOD": "Choose Neighborhood",
+  "ROAD": "Road",
+  "CHOOSEROAD": "Choose Road",
+  "MAINCATEGORIZATION": "Main Categorization",
+  "CHOOSEMAINCATEGORIZATION": "Choose Main Categorization",
+  "SUBCATEGORIZATION": "Sub Categorization",
+  "CHOOSESUBCATEGORIZATION": "Choose Sub Categorization",
+  "MONITORINGTOUR": "Monitoring Tour",
+  "CHOOSEMONITORINGTOUR": "Choose Monitoring Tour",
+  "PERIOD": "Period",
+  "CHOOSEPERIOD": "Choose From - To",
+  "OPTION1": "Monitoring Tour 1",
+  "OPTION2": "Monitoring Tour 2",
+  "OPTION3": "Monitoring Tour 3",
+  "OPTION4": "Monitoring Tour 4",
+  "OPTION5": "Monitoring Tour 5",
+  "OPTION6": "Monitoring Tour 6"
+
+
+}
+}
