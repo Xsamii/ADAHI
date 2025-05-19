@@ -72,16 +72,16 @@ export class MapService {
       }),
       'top-left'
     );
-    this.mapView.ui.add(
-      new Legend({
-        id: 'legend',
-        icon: 'templates',
-        style: 'border-radius:"10px"',
-        view: this.mapView,
-        container: 'legendContainer',
-      }),
-      'bottom-left'
-    );
+    // this.mapView.ui.add(
+    //   new Legend({
+    //     id: 'legend',
+    //     icon: 'templates',
+    //     style: 'border-radius:"10px"',
+    //     view: this.mapView,
+    //     container: 'legendContainer',
+    //   }),
+    //   'bottom-left'
+    // );
 
     reactiveUtuils.when(
       () => this.mapView.stationary === true,
@@ -399,7 +399,7 @@ export class MapService {
         returnGeometry: true,
         outFields: ['*'],
       });
-      console.log('query', query);
+      // console.log('query', query);
 
       featureLayer
         .queryFeatures(query)
@@ -706,6 +706,15 @@ export class MapService {
         'asdsdsdadsa',
         filter
       );
+
+      let featuresExtent = roomResult.features[0].geometry.extent.clone();
+      // console.log('feature layer', featureLayer);
+      // Iterate over the rest of the features to union their extents
+      roomResult.features.forEach((feature) => {
+        featuresExtent = featuresExtent.union(feature.geometry.extent);
+      });
+
+      this.mapView?.goTo(featuresExtent.expand(1));
 
       // const targetResult = await targetLayer.queryFeatures(spatialQuery);
 

@@ -44,7 +44,24 @@ export class ComponentsComponent {
   constructor(private dashboardService: DashboardService) {}
 
   ngOnInit() {
-    this.components = this.dashboardService.components.value;
+    this.dashboardService.components.subscribe((v) => {
+      const values = v
+        .filter((v) => v.selected)
+        .map((component) => component.name);
+      this.components = v;
+      this.selectedComponent = v.filter((component) => component.selected);
+      this.subDesciplines = engineeringDisciplines.filter((discipline) =>
+        values.includes(discipline.type)
+      );
+    });
+    this.dashboardService.subComponents.subscribe((v) => {
+      this.subComponents = v;
+      this.selectedSubComponent = v.filter((component) => component.selected);
+    });
+    // this.dashboardService.engineeringDescipline.subscribe((v) => {
+    //   this.subDesciplines = v.filter((component) => component.selected);
+    //   this.selectedSubDesciplines = v.filter((component) => component.selected);
+    // });
   }
   onComponentChange(event: any) {
     this.selectedComponent = event.value;

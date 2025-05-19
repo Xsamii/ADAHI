@@ -11,6 +11,7 @@ import { EngineeringDisciplineType, engineeringDisciplines } from './Descpline';
 
 @Injectable({ providedIn: 'root' })
 export class DashboardService {
+  private initialized = true;
   private mapView: MapView | undefined;
   private featureLayers!: (FeatureLayer | undefined)[];
   displayLayerList: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
@@ -50,6 +51,25 @@ export class DashboardService {
       { name: 'ZONE 04', selected: false },
       { name: 'ZONE 05', selected: false },
     ]);
+  systems: BehaviorSubject<{ name: string; selected: boolean }[]> =
+    new BehaviorSubject<{ name: string; selected: boolean }[]>([
+      { name: 'AC SYSTEM', selected: false },
+      { name: 'BELTS SYSTEM', selected: false },
+      { name: 'BLOOD DRAINAGE', selected: false },
+      { name: 'FIREFIGHTING SYSTEM', selected: false },
+      { name: 'LPG SYSTEM', selected: false },
+      { name: 'REF SYSTEM', selected: false },
+      { name: 'REF&AC SYSTEM SYSTEM', selected: false },
+      { name: 'VENTILATION SYSTEM', selected: false },
+      { name: 'WATER SUPPLY SYSTEM', selected: false },
+      { name: 'BELTS SYSTEM', selected: false },
+      { name: 'ELECTRICAL SYSTEM', selected: false },
+      { name: 'WEIGHT MEASUREMENT', selected: false },
+      // { name: 'Domestic Cold Water', selected: false },
+      // { name: 'Domestic Hot Water', selected: false },
+      // { name: 'Drainage', selected: false },
+      // { name: 'Blood Drainage', selected: false },
+    ]);
   subComponents: BehaviorSubject<
     { name: string; selected: boolean; type: string }[]
   > = new BehaviorSubject<{ name: string; selected: boolean; type: string }[]>([
@@ -57,7 +77,7 @@ export class DashboardService {
     { name: 'Pipes', selected: false, type: 'Mechanical' },
     { name: 'Ducts', selected: false, type: 'Electrical' },
     { name: 'Conduits', selected: false, type: 'Electrical' },
-    { name: 'Conduits', selected: false, type: 'Electrical' },
+    // { name: 'Conduits', selected: false, type: 'Electrical' },
     { name: 'Cable Trays', selected: false, type: 'Electrical' },
     { name: 'Lighting', selected: false, type: 'Electrical' },
   ]);
@@ -75,23 +95,77 @@ export class DashboardService {
   initMap() {
     this.mapView = this.mapService.initializeMap('map');
 
-    this.featureLayers = featureLayersConfig.map((f) =>
-      this.mapService.addFeatureLayer(f.url, f.title, f.visible, f.popupTemp)
-    );
+    const generalPOpupTemplate = {
+      title: '{family}',
+      content: [
+        {
+          type: 'fields',
+          fieldInfos: [
+            {
+              fieldName: 'bldg_name',
+              label: 'Building Name',
+            },
+            {
+              fieldName: 'BldgLevel_Desc',
+              label: 'Level',
+            },
+            {
+              fieldName: 'docname',
+              label: 'Document Name',
+            },
+            {
+              fieldName: 'sub_discipline',
+              label: 'Sub Discipline',
+            },
+            {
+              fieldName: 'sub_sub_discipline',
+              label: 'Sub Sub Discipline',
+            },
+            {
+              fieldName: 'SYSTEM_NAME',
+              label: 'System',
+            },
+            {
+              fieldName: 'Family',
+              label: 'Family',
+            },
+          ],
+        },
+      ],
+    };
+    this.featureLayers = featureLayersConfig.map((f) => {
+      let popUpTemp = {};
+      if (f.popupTemp) {
+        const tempTemp = generalPOpupTemplate;
+        tempTemp.content[0].fieldInfos.push(...f.popupTemp);
+        popUpTemp = tempTemp;
+      } else {
+        popUpTemp = generalPOpupTemplate;
+      }
+      return this.mapService.addFeatureLayer(
+        f.url,
+        f.title,
+        f.visible,
+        popUpTemp
+      );
+    });
 
     this.floors.subscribe((v) => {
       console.log('vvvv', v);
-      // const value = v.filter((f) => f.checked)[0]?.name;
-      // const values = this.floorsValues[value as string];
-      // this.filterOnFloor(values);
       this.applyAllFilters();
       this.getuniqueRoomsNames();
     });
     this.components.subscribe((v) => {
+      if (this.initialized) {
+        return;
+      }
       const selectedComponents = v.filter((c) => c.selected).map((c) => c.name);
       this.handleComponentChange(selectedComponents);
     });
     this.subComponents.subscribe((v) => {
+      if (this.initialized) {
+        return;
+      }
       // console.log('sub comp', v);
       const selectedSubComponents = v
         .filter((c) => c.selected)
@@ -99,16 +173,39 @@ export class DashboardService {
       this.handleSubComponentChange(selectedSubComponents);
     });
     this.buildings.subscribe((v) => {
+      if (this.initialized) {
+        return;
+      }
       const selectedBuildings = v.filter((c) => c.selected).map((c) => c.name);
       // console.log('selected buildings', selectedBuildings);
       this.handleBuildingChange(selectedBuildings);
     });
     this.engineeringDescipline.subscribe((v) => {
-      console.log('engineering descipline', v);
+      if (this.initialized) {
+        return;
+      }
+      // console.log('engineering descipline', v);
+      this.applyAllFilters();
+    });
+    this.systems.subscribe((v) => {
+      if (this.initialized) {
+        return;
+      }
+      console.log('systemssss', v);
+      const compNum = this.components.value.filter((c) => c.selected).length;
+      const systemsNum = v.filter((c) => c.selected).length;
+      if (compNum === 0 && systemsNum > 0) {
+        this.components.next([
+          { name: 'Mechanical', selected: true },
+          { name: 'Electrical', selected: true },
+        ]);
+      }
       this.applyAllFilters();
     });
     this.applyAllFilters();
-    this.getuniqueRoomsNames();
+    // this.getuniqueRoomsNames();
+    this.initialized = false;
+
     // this.mapService.filterFeatureLayers(this.featureLayers[2], '1', '1', true);
   }
 
@@ -225,6 +322,7 @@ export class DashboardService {
     });
   }
   applyAllFilters(): void {
+    console.log('apply all filters');
     const selectedFloor = this.floors.value.find((f) => f.checked)?.name;
     const floorValues = selectedFloor ? this.floorsValues[selectedFloor] : [];
 
@@ -237,6 +335,9 @@ export class DashboardService {
       .map((d) => d.name);
 
     const subSubDisciplineValues: string[] = [];
+    const systemValues: string[] = this.systems.value
+      .filter((s) => s.selected)
+      .map((s) => s.name);
 
     this.engineeringDescipline.value
       .filter((d) => d.selected)
@@ -271,6 +372,7 @@ export class DashboardService {
           { fieldName: 'Bldg_Name', values: buildingValues },
           { fieldName: 'SUB_DISCIPLINE', values: subDisciplineValues },
           { fieldName: 'SUB_SUB_DISCIPLINE', values: subSubDisciplineValues },
+          { fieldName: 'SYSTEM_NAME', values: systemValues },
         ];
       } else {
         filterFields = [
