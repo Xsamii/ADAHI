@@ -51,7 +51,7 @@
 }
 
 :host ::ng-deep .p-component {
-  @apply rounded-lg;
+  @apply rounded-[0.34rem];
   padding: 1rem;
 }
 :host ::ng-deep .p-card-header {
@@ -90,7 +90,7 @@
   -o-border-radius: 0.5rem;
 }
 :host ::ng-deep .esri-view-surface {
-  @apply rounded-lg;
+  @apply rounded-[0.34rem];
 }
 :host ::ng-deep .esri-popup__main-container {
   min-height: fit-content !important;

@@ -33,7 +33,7 @@ export class MapComponent implements OnInit {
   layerListToggler: Observable<boolean>;
   basemapToggler: Observable<boolean>;
   infoToggler: Observable<boolean>;
-
+  legendVisible: boolean = false;
   layerlistDisplayer;
   ngOnInit() {
     this.dashboardService.initMap();
@@ -43,4 +43,13 @@ export class MapComponent implements OnInit {
     this.basemapToggler = this.dashboardService.displayBaseMap;
     this.infoToggler = this.dashboardService.displayInfo;
   }
+
+showLegend() {
+  this.legendVisible = !this.legendVisible;
+if (this.legendVisible) {
+    this.mapService.addLegendToElement('legendContainer');
+  } else {
+    console.log('legendVisible', this.legendVisible);
+  }
+}
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, OnInit, Output, ViewChild } from '@angular/core';
 import MapView from '@arcgis/core/views/MapView';
 import { MapService } from '../map.service';
 import { DashboardService } from '../../dashboard.service';
@@ -7,6 +7,7 @@ import { toPng } from 'html-to-image';
 import { PdfReportComponent } from '../../../shared/pdf-report/pdf-report.component';
 import html2canvas from 'html2canvas';
 import { CommonModule } from '@angular/common';
+import { PreferenceService } from '../../../shared/services/preference.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class SideWidgetsComponent {
    *
    */
   el = document.getElementById('content')
-
+  preference = inject(PreferenceService)
   isLoading: boolean = false;
   constructor(
     private mapService: MapService,
@@ -59,6 +60,18 @@ export class SideWidgetsComponent {
   }
   toggleBaseMap() {
     this.dashboardService.toggleBaseMap();
+  }
+
+
+   @Output() toggleLegend = new EventEmitter<void>();
+
+  triggerLegendToggle() {
+
+
+
+    this.toggleLegend.emit();
+
+
   }
   // WORKING JUST FINE
 

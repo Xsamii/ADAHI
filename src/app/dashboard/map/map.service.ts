@@ -82,6 +82,7 @@ export class MapService {
     //   }),
     //   'bottom-left'
     // );
+    // this.mapView.ui.remove('legend')
 
     reactiveUtuils.when(
       () => this.mapView.stationary === true,
@@ -102,16 +103,33 @@ export class MapService {
 
     return this.mapView;
   }
+  // addLegendToElement(id: string) {
+  //   this.mapView.ui.add(
+  //     new Legend({
+  //       id: 'legend',
+  //       icon: 'templates',
+  //       style: 'border-radius:"10px"',
+  //       view: this.mapView,
+  //       container: id,
+  //     })
+  //   );
+  // }
+
   addLegendToElement(id: string) {
-    this.mapView.ui.add(
-      new Legend({
-        id: 'legend',
-        icon: 'templates',
-        style: 'border-radius:"10px"',
-        view: this.mapView,
-        container: id,
-      })
-    );
+  const legendDiv = document.getElementById(id);
+  if (!legendDiv) return;
+
+  legendDiv.innerHTML = '';
+
+  const legend = new Legend({
+    view: this.mapView,
+    container: legendDiv,
+  });
+
+  this.mapView.ui.add(legend, 'manual');
+}
+  removeLegend() {
+    this.mapView.ui.remove('legend');
   }
 
   getMapCanvas(): HTMLCanvasElement | undefined {

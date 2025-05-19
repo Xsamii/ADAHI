@@ -5,7 +5,9 @@
   <!-- Logo Container -->
   <div>
     <img
-     [src]="logoPath()"
+
+[src]="preference.theme() === 'dark' ? '/assets/images/adahi-dark-mode.svg' : '/assets/images/adahi-logo.svg'"
+
       alt="Logo"
       class="w-full py-4"
     />

@@ -1,54 +1,75 @@
 <!-- ================================ -->
 <!-- START RIGHT MENU BAR -->
 <!-- ================================ -->
-<div id="elementToHide" class="btn-sidemenu-icon bg-white rounded-full p-2">
+<div id="elementToHide" class="btn-sidemenu-icon  rounded-full p-2"
+
+[ngStyle]="{ 'background-color': preference.theme() === 'dark' ? '#000000' : '#FFFFFF',
+  'color': preference.theme() === 'dark' ? '#FFFFFF' : '#000000' }"
+>
   <!-- TABEL ICON -->
   <button (click)="zoomIn()" class="btns btn-tabel mov">
-    <img src="../../../../assets/images\zoomInIcon.svg" />
+    <img
+    [src]="preference.theme() === 'dark' ? '../../../../assets/icons/dark-mode/zoom-in.svg' : '../../../../assets/icons/light-mode/zoom-in.svg'"
+    />
   </button>
   <button (click)="zoomOut()" class="btns btn-tabel mov">
-    <img src="../../../../assets/images/zoomOutIcon.svg" />
+    <img
+    [src]="preference.theme() === 'dark' ? '../../../../assets/icons/dark-mode/zoom-out.svg' : '../../../../assets/icons/light-mode/zoom-out.svg'"
+    />
   </button>
   <!-- <button class="btns btn-tabel mov">
-    <img src="../../../../assets/images/tabel.svg" />
+    <img src="../../../../assets/icons/tabel.svg" />
   </button> -->
   <!-- HAND ICON -->
   <!-- <button class="btns btn-sub-search mov">
-    <img src="../../../../assets/images/hand.svg" />
+    <img src="../../../../assets/icons/hand.svg" />
   </button> -->
   <!-- HOME ICON -->
   <button (click)="goHome()" class="btns btn-home mov">
-    <img src="../../../../assets/images/homeIcon.svg" />
+    <img [src]="preference.theme() === 'dark' ? '../../../../assets/icons/dark-mode/home.svg' : '../../../../assets/icons/light-mode/home.svg'"
+    />
   </button>
   <!-- PREV ICON -->
   <button (click)="goBackExtent()" class="btns btn-prev mov" id="zoomPrevBtn">
     <!--esri-widget--button esri-widget esri-disabled-->
-    <img src="../../../../assets/images/prevIcon.svg" />
+    <img [src]="preference.theme() === 'dark' ? '../../../../assets/icons/dark-mode/prev.svg' : '../../../../assets/icons/light-mode/prev.svg'"
+    />
   </button>
   <!-- NEXT ICON -->
   <button (click)="goForwardExtent()" class="btns btn-next mov" id="zoomNextBtn">
     <!--esri-widget--button esri-widget esri-disabled-->
-    <img src="../../../../assets/images/nextIcon.svg" />
+    <img [src]="preference.theme() === 'dark' ? '../../../../assets/icons/dark-mode/next.svg' : '../../../../assets/icons/light-mode/next.svg'"
+/>
   </button>
   <!-- LAYERS ICON -->
   <button (click)="toggleLayerList()" class="btns btn-layers mov">
-    <img src="../../../../assets/images/layerIcon.svg" />
+    <img [src]="preference.theme() === 'dark' ? '../../../../assets/icons/dark-mode/layer.svg' : '../../../../assets/icons/light-mode/layer.svg'"
+/>
   </button>
   <!-- SWITCH MAP ICON -->
   <button (click)="toggleBaseMap()" class="btns btn-switch-map mov">
-    <img src="../../../../assets/images/switchMapIcon.svg" />
+    <img [src]="preference.theme() === 'dark' ? '../../../../assets/icons/dark-mode/map-type.svg' : '../../../../assets/icons/light-mode/map-type.svg'"
+ />
   </button>
   <!-- PRINT  ICON -->
   <button class="btns btn-details mov" (click)="printScreen()">
-    <img src="../../../../assets/icons/print.svg" />
+    <img [src]="preference.theme() === 'dark' ? '../../../../assets/icons/dark-mode/print.svg' : '../../../../assets/icons/light-mode/print.svg'"
+ />
   </button>
   <!-- PDF EXPORT ICON -->
   <button class="btns btn-details mov" (click)="exportToPDF()">
-    <img src="../../../../assets/images/pdfExpo.svg" />
+    <img [src]="preference.theme() === 'dark' ? '../../../../assets/icons/dark-mode/pdf.svg' : '../../../../assets/icons/light-mode/pdf.svg'"
+ />
+  </button>
+    <!-- LEGEND ICON -->
+  <button class="btns btn-details mov" (click)="triggerLegendToggle()">
+    <img [src]="preference.theme() === 'dark' ? '../../../../assets/icons/dark-mode/legendToggle.svg' : '../../../../assets/icons/light-mode/legendToggle.svg'"
+/>
   </button>
   <!-- DETAILS ICON -->
   <button class="btns btn-details mov" (click)="showPopup()">
-    <img src="../../../../assets/images/detailsIcon.svg" />
+    <img [src]="preference.theme() === 'dark' ? '../../../../assets/icons/dark-mode/info.svg' : '../../../../assets/icons/light-mode/info.svg'"
+/>
   </button>
 
 </div>
