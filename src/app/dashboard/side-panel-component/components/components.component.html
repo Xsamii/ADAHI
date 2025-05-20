@@ -10,25 +10,32 @@
       <p-multiSelect [options]="components" [(ngModel)]="selectedComponent" optionLabel="name"
         placeholder="Select Component"
          class="w-full "
-        styleClass="w-full border-2 border-gray-100 rounded-[0.34rem] p-1" inputStyleClass="w-full " (onChange)="onComponentChange($event)" />
+      [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
+          inputStyleClass="w-full " (onChange)="onComponentChange($event)" />
 
       <label>Select Sub-component</label>
 
       <p-multiSelect [options]="subComponents" [(ngModel)]="selectedSubComponent" optionLabel="name"
         placeholder="Select Sub Component" class="w-full "
-        styleClass="w-full border-2 border-gray-100 rounded-[0.34rem] p-1" inputStyleClass="w-full" [disabled]="!subComponents || subComponents.length === 0"
+      [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
+
+          inputStyleClass="w-full" [disabled]="!subComponents || subComponents.length === 0"
         (onChange)="onSubComponentChange($event)" />
 
       <label>Select Sub-sub-Descipline</label>
       <p-multiSelect [options]="subDesciplines" [(ngModel)]="selectedSubDesciplines" optionLabel="name"
         placeholder="Select Sub Descipline" class="w-full "
-        styleClass="w-full border-2 border-gray-100 rounded-[0.34rem] p-1" inputStyleClass="w-full" [disabled]="!subDesciplines || subDesciplines.length === 0"
+      [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
+
+          inputStyleClass="w-full" [disabled]="!subDesciplines || subDesciplines.length === 0"
         (onChange)="onSubDesciplinesChange($event)" />
 
       <label>Select Sub-sub-Descipline</label>
       <p-multiSelect [options]="subSubDesciplines" [(ngModel)]="selectedSubSubDesciplines" optionLabel="name"
         placeholder="Select Sub Descipline" class="w-full "
-        styleClass="w-full border-2 border-gray-100 rounded-[0.34rem] p-1" inputStyleClass="w-full" [disabled]="!subSubDesciplines || subSubDesciplines.length === 0"
+      [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
+
+          inputStyleClass="w-full" [disabled]="!subSubDesciplines || subSubDesciplines.length === 0"
         (onChange)="onSubSubDesciplinesChange($event)" />
     </div>
   </div>

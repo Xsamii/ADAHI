@@ -6,7 +6,10 @@
 
     <!-- <label > Systems</label> -->
     <p-multiSelect [options]="systems" [(ngModel)]="selectedSystems" optionLabel="name" placeholder="Select System"
-      class="w-full " styleClass="w-full border-2 border-gray-100 rounded-[0.34rem] p-1" inputStyleClass="w-full "
+      class="w-full " 
+      [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
+
+      inputStyleClass="w-full "
       (onChange)="onSystemChange($event)" />
   </div>
 </p-card>

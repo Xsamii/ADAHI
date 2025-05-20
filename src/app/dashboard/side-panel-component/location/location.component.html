@@ -7,19 +7,22 @@
     <div class="flex flex-col space-y-2">
       <label for="">Select Floor</label>
       <p-dropdown [options]="floors" [(ngModel)]="selectedFloor" optionLabel="name" placeholder="Select Floor"
-        class="w-full " styleClass="w-full border-2 border-gray-100 rounded-[0.34rem] p-1" inputStyleClass="w-full"
+      [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
+        class="w-full "   inputStyleClass="w-full"
         (onChange)="onFloorChange($event)"></p-dropdown>
 
       <label for="">Select Building</label>
 
       <p-multiSelect [options]="buildings" [(ngModel)]="selectedBuildings" optionLabel="name"
-        placeholder="Select Building" class="w-full " styleClass="w-full border-2 border-gray-100 rounded-[0.34rem] p-1"
+      [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
+        placeholder="Select Building" class="w-full "  
         inputStyleClass="w-full" (onChange)="onBuildingChange($event)" />
 
       <label for="">Select Rooms</label>
 
       <p-multiSelect [options]="rooms" [(ngModel)]="selectedRooms" optionLabel="name" placeholder="Select Room"
-        class="w-full " styleClass="w-full border-2 border-gray-100 rounded-[0.34rem] p-1" inputStyleClass="w-full"
+      [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
+        class="w-full "   inputStyleClass="w-full"
         (onChange)="onRoomChange($event)" />
     </div>
   </div>
