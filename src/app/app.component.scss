@@ -25,3 +25,64 @@ html {
 ::ng-deep .p-card{
  margin: 7.5px 15px  !important;
 }
+ ::ng-deep{
+
+  .p-multiselect-item{
+  @apply p-2   gap-4;
+}
+.p-multiselect-filter-icon  {
+  @apply top-[22%];
+}
+.p-multiselect-header{
+  @apply p-2 gap-2;
+}
+ [data-theme='dark'] .p-multiselect-header  {
+    @apply bg-[#1e1e1e] text-white;
+  }
+  [data-theme='light'] .p-multiselect-header  {
+    @apply bg-white text-black;
+  }
+
+   [data-theme='light'] .p-multiselect-empty-message  {
+    @apply bg-white text-black;
+  }
+ [data-theme='dark'] .p-multiselect-empty-message  {
+    @apply  bg-[#1e1e1e] text-white;
+  }
+  .p-multiselect-filter  {
+    @apply   text-black;
+  }
+
+.p-autocomplete-loader{
+  @apply top-[22%];
+}
+
+
+
+ [data-theme='dark'] .p-multiselect-item  {
+    @apply bg-[#1e1e1e] text-white;
+  }
+
+  [data-theme='light'] .p-multiselect-item  {
+    @apply bg-white text-black;
+  }
+
+
+
+  .p-dropdown-item{
+    @apply p-2;
+  }
+
+ [data-theme='dark'] .p-dropdown-item  {
+    @apply bg-[#1e1e1e] text-white;
+  }
+
+  [data-theme='light'] .p-dropdown-item  {
+    @apply bg-white text-black;
+  }
+
+
+
+
+}
+
