@@ -205,6 +205,12 @@ export const featureLayersConfig: {
     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/46`,
     title: 'Rooms',
     visible: true,
+    popupTemp: [
+      {
+        fieldName: 'RoomName',
+        label: 'Name',
+      },
+    ],
   },
   ////////////////mechanical
   {

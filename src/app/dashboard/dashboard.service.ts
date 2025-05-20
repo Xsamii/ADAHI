@@ -96,7 +96,7 @@ export class DashboardService {
     this.mapView = this.mapService.initializeMap('map');
 
     const generalPOpupTemplate = {
-      title: '{family}',
+      title: '{Discipline}',
       content: [
         {
           type: 'fields',
