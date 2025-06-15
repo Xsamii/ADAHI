@@ -42,7 +42,7 @@
       }"
       (click)="show3D()"
     >
- Toggle 3D
+{{ dashboardService.is3DActive() ? 'SHOW 2D' : 'SHOW 3D' }}
 
     </button>
 

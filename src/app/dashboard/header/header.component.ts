@@ -16,10 +16,10 @@ export class HeaderComponent {
   preference = inject(PreferenceService);
 
   translate = inject(TranslateService);
-
+  dashboardService = inject(DashboardService);
   isDarkMode = false;
 
-  constructor(private darkModeService: DarkModeService, private dashboardService: DashboardService) {
+  constructor(private darkModeService: DarkModeService, ) {
     this.isDarkMode = this.darkModeService.currentMode;
   }
 
