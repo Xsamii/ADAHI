@@ -8,6 +8,7 @@ import { PdfReportComponent } from '../../../shared/pdf-report/pdf-report.compon
 import html2canvas from 'html2canvas';
 import { CommonModule } from '@angular/common';
 import { PreferenceService } from '../../../shared/services/preference.service';
+import { MapComponent } from '../map.component';
 
 
 @Component({
@@ -66,12 +67,7 @@ export class SideWidgetsComponent {
    @Output() toggleLegend = new EventEmitter<void>();
 
   triggerLegendToggle() {
-
-
-
     this.toggleLegend.emit();
-
-
   }
   // WORKING JUST FINE
 
@@ -259,16 +255,21 @@ export class SideWidgetsComponent {
 
 
   @ViewChild(PdfReportComponent) pdfReportComponent: PdfReportComponent; // Access the pdf-report component
-
+  @ViewChild(MapComponent) mapComponent: MapComponent; // Access the map component
   isPrinting: boolean = false;
+
   exportToPDF() {
     this.isPrinting = true;
+    // setTimeout(() => {
+    //   this.triggerLegendToggle();
+
+    // }, 5);
 
     setTimeout(() => {
       // Ensure pdfReportComponent and pdfContent are available
       if (this.pdfReportComponent && this.pdfReportComponent.pdfContent) {
         const element = this.pdfReportComponent.pdfContent.nativeElement; // Access pdfContent element
-console.table(element);
+        // this.mapComponent.showLegend(); // Ensure legend is visible
         const innerElement = document.getElementById('pdfContent')
         const mapView = this.mapService.getMapView();
         if (!mapView) {
@@ -304,12 +305,30 @@ console.table(element);
               this.mapScaleFactor = 1; // Set the scaling factor here
               this.scaledMapWidth = (pdfWidth * this.mapScaleFactor);
               this.scaledMapHeight = (mapView.height * this.scaledMapWidth) / mapView.width;
-              pdf.addImage(
+
+              if(this.preference.dir() === 'rtl'){
+                 pdf.addImage(
                 this.mapImage, 'PNG',
                 13, 62, // Adjust the positioning of the map below the HTML content
-                this.scaledMapWidth - 410, this.scaledMapHeight +80, // Use scaled width and height
+                this.scaledMapWidth - 410, this.scaledMapHeight +75, // Use scaled width and height
+                '', 'FAST'
+              )
+            }
+              else{
+                 pdf.addImage(
+                this.mapImage, 'PNG',
+                395, 62, // Adjust the positioning of the map below the HTML content
+                this.scaledMapWidth - 410, this.scaledMapHeight +75, // Use scaled width and height
                 '', 'FAST'
               );
+              }
+
+              // pdf.addImage(
+              //   this.mapImage, 'PNG',
+              //   13, 62, // Adjust the positioning of the map below the HTML content
+              //   this.scaledMapWidth - 410, this.scaledMapHeight +75, // Use scaled width and height
+              //   '', 'FAST'
+              // );
               // Save the PDF
               pdf.save('report.pdf');
               this.isPrinting = false;

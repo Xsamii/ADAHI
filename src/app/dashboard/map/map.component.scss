@@ -96,3 +96,13 @@
   min-height: fit-content !important;
   border-radius: 10px;
 }
+@media print {
+  @page {
+      size: A3 landscape;
+      margin: 0 !important;
+  }
+
+    #legendContainer {
+      display: block;
+    }
+}

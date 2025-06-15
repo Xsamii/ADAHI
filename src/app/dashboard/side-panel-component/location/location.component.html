@@ -15,7 +15,7 @@
 
       <p-multiSelect [options]="buildings" [(ngModel)]="selectedBuildings" optionLabel="name"
       [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
-        placeholder="Select Building" class="w-full "  
+        placeholder="Select Building" class="w-full "
         inputStyleClass="w-full" (onChange)="onBuildingChange($event)" />
 
       <label for="">Select Rooms</label>
