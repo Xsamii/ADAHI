@@ -186,7 +186,7 @@ export enum ComponentType {
 //     main: true,
 //   },
 // ];
-
+//https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/71
 export const featureLayersConfig: {
   url: string;
   title: string;
@@ -197,12 +197,12 @@ export const featureLayersConfig: {
   popupTemp?: any;
 }[] = [
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/28`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/28`,
     title: 'Layout',
     visible: true,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/46`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/46`,
     title: 'Rooms',
     visible: true,
     popupTemp: [
@@ -214,27 +214,27 @@ export const featureLayersConfig: {
   },
   ////////////////mechanical
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/0`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/0`,
     title: 'Air Terminals',
     component: ComponentType.Mechanical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/8`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/8`,
     title: 'Conduits',
     subComponent: 'Conduits',
     component: ComponentType.Mechanical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/9`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/9`,
     title: 'Conduits Fittings',
     subComponent: 'Conduits',
     component: ComponentType.Mechanical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/16`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/16`,
     title: 'Ducts',
     subComponent: 'Ducts',
     component: ComponentType.Mechanical,
@@ -251,49 +251,49 @@ export const featureLayersConfig: {
     ],
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/15`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/15`,
     title: 'Duct Fittings',
     subComponent: 'Ducts',
     component: ComponentType.Mechanical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/14`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/14`,
     title: 'Duct Accessories',
     subComponent: 'Ducts',
     component: ComponentType.Mechanical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/26`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/26`,
     title: 'Flex Ducts', //////////
     subComponent: 'Ducts',
     component: ComponentType.Mechanical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/25`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/25`,
     title: 'Fire Alarm Devices',
     subComponent: 'Fire Fighting',
     component: ComponentType.Mechanical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/50`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/50`,
     title: 'Sprinklers',
     subComponent: 'Fire Fighting',
     component: ComponentType.Mechanical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/39`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/39`,
     title: 'Pipe Fitting',
     subComponent: 'Pipes',
     component: ComponentType.Mechanical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/40`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/40`,
     title: 'Pipes',
     subComponent: 'Pipes',
     component: ComponentType.Mechanical,
@@ -310,14 +310,14 @@ export const featureLayersConfig: {
     ],
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/42`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/42`,
     title: 'Plumbing Fixtures',
     // subComponent: 'Pipes',
     component: ComponentType.Mechanical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/35`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/35`,
     title: 'Mechanical Equipments',
     component: ComponentType.Mechanical,
     visible: false,
@@ -325,7 +325,7 @@ export const featureLayersConfig: {
   },
   /////////////electrical
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/2`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/2`,
     title: 'Cable Trays',
     subComponent: 'Cable Trays',
     component: ComponentType.Electrical,
@@ -342,37 +342,226 @@ export const featureLayersConfig: {
     ],
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/3`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/3`,
     title: 'Cable Tray Fittings',
     subComponent: 'Cable Trays',
     component: ComponentType.Electrical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/18`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/18`,
     title: 'Electrical Fixtures',
     component: ComponentType.Electrical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/32`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/32`,
     title: 'Lighting Devices',
     subComponent: 'Lighting',
     component: ComponentType.Electrical,
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/33`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/33`,
     title: 'Lighting Fixtures',
     component: ComponentType.Electrical,
     subComponent: 'Lighting',
     visible: false,
   },
   {
-    url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/map1105/MapServer/17`,
+    url: `https://localhost:6443/arcgis/rest/services/MAPTHREED/MapServer/17`,
     title: 'Electrical Equipments',
     component: ComponentType.Electrical,
     visible: false,
     main: true,
   },
 ];
+// export const featureLayersConfig: {
+//   url: string;
+//   title: string;
+//   main?: boolean;
+//   visible: boolean;
+//   component?: ComponentType;
+//   subComponent?: string;
+//   popupTemp?: any;
+// }[] = [
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/28`,
+//     title: 'Layout',
+//     visible: true,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/46`,
+//     title: 'Rooms',
+//     visible: true,
+//     popupTemp: [
+//       {
+//         fieldName: 'RoomName',
+//         label: 'Name',
+//       },
+//     ],
+//   },
+//   ////////////////mechanical
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/0`,
+//     title: 'Air Terminals',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/8`,
+//     title: 'Conduits',
+//     subComponent: 'Conduits',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/9`,
+//     title: 'Conduits Fittings',
+//     subComponent: 'Conduits',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/16`,
+//     title: 'Ducts',
+//     subComponent: 'Ducts',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//     popupTemp: [
+//       {
+//         fieldName: 'SourceLength',
+//         label: 'Length',
+//       },
+//       {
+//         fieldName: 'Duct_Size',
+//         label: 'Size',
+//       },
+//     ],
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/15`,
+//     title: 'Duct Fittings',
+//     subComponent: 'Ducts',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/14`,
+//     title: 'Duct Accessories',
+//     subComponent: 'Ducts',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/26`,
+//     title: 'Flex Ducts', //////////
+//     subComponent: 'Ducts',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/25`,
+//     title: 'Fire Alarm Devices',
+//     subComponent: 'Fire Fighting',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/50`,
+//     title: 'Sprinklers',
+//     subComponent: 'Fire Fighting',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/39`,
+//     title: 'Pipe Fitting',
+//     subComponent: 'Pipes',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/40`,
+//     title: 'Pipes',
+//     subComponent: 'Pipes',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//     popupTemp: [
+//       {
+//         fieldName: 'SourceLength',
+//         label: 'Length',
+//       },
+//       {
+//         fieldName: 'Pipe_Size',
+//         label: 'Size',
+//       },
+//     ],
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/42`,
+//     title: 'Plumbing Fixtures',
+//     // subComponent: 'Pipes',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/35`,
+//     title: 'Mechanical Equipments',
+//     component: ComponentType.Mechanical,
+//     visible: false,
+//     main: true,
+//   },
+//   /////////////electrical
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/2`,
+//     title: 'Cable Trays',
+//     subComponent: 'Cable Trays',
+//     component: ComponentType.Electrical,
+//     visible: false,
+//     popupTemp: [
+//       {
+//         fieldName: 'SourceLength',
+//         label: 'Length',
+//       },
+//       {
+//         fieldName: 'Size',
+//         label: 'Size',
+//       },
+//     ],
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/3`,
+//     title: 'Cable Tray Fittings',
+//     subComponent: 'Cable Trays',
+//     component: ComponentType.Electrical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/18`,
+//     title: 'Electrical Fixtures',
+//     component: ComponentType.Electrical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/32`,
+//     title: 'Lighting Devices',
+//     subComponent: 'Lighting',
+//     component: ComponentType.Electrical,
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/33`,
+//     title: 'Lighting Fixtures',
+//     component: ComponentType.Electrical,
+//     subComponent: 'Lighting',
+//     visible: false,
+//   },
+//   {
+//     url: `https://144.76.146.59:6443/arcgis/rest/services/BIM/Map2505/MapServer/17`,
+//     title: 'Electrical Equipments',
+//     component: ComponentType.Electrical,
+//     visible: false,
+//     main: true,
+//   },
+// ];

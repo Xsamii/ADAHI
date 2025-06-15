@@ -26,17 +26,36 @@ export class DashboardService {
       { name: 'Ground Floor', checked: true },
       { name: 'First Floor', checked: false },
       { name: 'Second Floor', checked: false },
+      { name: 'Unassigned', checked: false },
     ]);
   floorsValues: { [key: string]: string[] } = {
-    'Ground Floor': ['02 GF', 'GROUND FLOOR', 'GROUND LEVEL', '03 GF'],
+    'Ground Floor': [
+      '02 GF',
+      'GROUND FLOOR',
+      'GROUND LEVEL',
+      '03 GF',
+      'Ground',
+      '01 Outdoor',
+      '02 SE',
+      '01 Outdoor  - C',
+      'BASEMENT - PART B',
+      '00',
+      'Ground floor',
+      '02 SE',
+    ],
     'First Floor': [
       '04 FF',
+      'First floor',
       'FIRST FLOOR',
       'LEVEL 1 - A',
       'LEVEL 1 - D',
+      'LEVEL 1 - PART A',
+      'LEVEL 1 - PART D',
       'LEVEL 1 - PART C',
+      'First',
     ],
     'Second Floor': ['Second floor', 'Second floor', '05 SecF'],
+    Unassigned: ['__NULL__'],
   };
   components: BehaviorSubject<{ name: string; selected: boolean }[]> =
     new BehaviorSubject<{ name: string; selected: boolean }[]>([
@@ -383,7 +402,7 @@ export class DashboardService {
         ];
       }
 
-      this.mapService.filterFeatureLayersWithManyFieldsAndValues(
+      this.mapService.filterFeatureLayersWithManyFieldsAndValuesWithNulls(
         this.featureLayers[idx],
         filterFields,
         layerConfig.main,

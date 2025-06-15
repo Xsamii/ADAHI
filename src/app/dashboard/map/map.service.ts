@@ -41,6 +41,7 @@ export class MapService {
   private layerList: LayerList;
   private popUpTemplate = new PopupTemplate();
   private mainLayer: FeatureLayer;
+  roomsLayerView: __esri.FeatureLayerView | undefined;
 
   private extentArray: __esri.Extent[] = [];
   private currentExtentIndex: number = -1;
@@ -103,6 +104,18 @@ export class MapService {
 
     return this.mapView;
   }
+  getRoomsLayerView(): __esri.FeatureLayerView | undefined {
+    if (this.mapView) {
+      const layerViews = this.mapView.layerViews;
+      // console.log('layerViews', layerViews);
+      this.roomsLayerView = layerViews.find(
+        (layerView) => layerView.layer.title === 'Rooms'
+      ) as __esri.FeatureLayerView;
+      // console.log('roomsLayerView', this.roomsLayerView);
+      return this.roomsLayerView;
+    }
+    return undefined;
+  }
   // addLegendToElement(id: string) {
   //   this.mapView.ui.add(
   //     new Legend({
@@ -116,18 +129,18 @@ export class MapService {
   // }
 
   addLegendToElement(id: string) {
-  const legendDiv = document.getElementById(id);
-  if (!legendDiv) return;
+    const legendDiv = document.getElementById(id);
+    if (!legendDiv) return;
 
-  legendDiv.innerHTML = '';
+    legendDiv.innerHTML = '';
 
-  const legend = new Legend({
-    view: this.mapView,
-    container: legendDiv,
-  });
+    const legend = new Legend({
+      view: this.mapView,
+      container: legendDiv,
+    });
 
-  this.mapView.ui.add(legend, 'manual');
-}
+    this.mapView.ui.add(legend, 'manual');
+  }
   removeLegend() {
     this.mapView.ui.remove('legend');
   }
@@ -451,6 +464,79 @@ export class MapService {
         });
     }
   }
+  filterFeatureLayersWithManyFieldsAndValuesWithNulls(
+    featureLayer: FeatureLayer | undefined,
+    fieldValues: { fieldName: string; values: (string | number)[] }[],
+    main?: boolean,
+    name?: string
+  ) {
+    if (featureLayer) {
+      const queryParts = fieldValues
+        .filter(({ values }) => values.length > 0)
+        .map(({ fieldName, values }) => {
+          const hasNull = values.includes('__NULL__');
+          const nonNullValues = values.filter((v) => v !== '__NULL__');
+
+          const conditions: string[] = [];
+
+          if (nonNullValues.length > 0) {
+            const formattedValues = nonNullValues
+              .map((value) =>
+                typeof value === 'string' ? `N'${value}'` : value
+              )
+              .join(',');
+            conditions.push(`${fieldName} IN (${formattedValues})`);
+          }
+
+          if (hasNull) {
+            conditions.push(`${fieldName} IS NULL`);
+          }
+
+          return conditions.length > 1
+            ? `(${conditions.join(' OR ')})`
+            : conditions[0];
+        });
+
+      if (queryParts.length === 0) {
+        this.filterFeatureLayers(featureLayer, '1', '1');
+        return;
+      }
+
+      const newDefinitionExpression = queryParts.join(' AND ');
+      console.log('definition', newDefinitionExpression);
+
+      featureLayer.definitionExpression = newDefinitionExpression;
+
+      const query = new Query({
+        where: newDefinitionExpression,
+        returnGeometry: true,
+        outFields: ['*'],
+      });
+
+      featureLayer
+        .queryFeatures(query)
+        .then((result) => {
+          if (result.features.length > 0) {
+            if (main) {
+              featureLayer.queryFeatureCount(query).then((count) => {
+                const currentCounts = this.featureCounts$.value;
+                this.featureCounts$.next({
+                  ...currentCounts,
+                  [name as string]: count,
+                });
+                console.log('currentCounts', currentCounts);
+              });
+              this.setFeatures(result.features);
+            }
+          } else {
+            console.log('No features found.');
+          }
+        })
+        .catch((error) => {
+          console.error('Error querying features: ', error, featureLayer);
+        });
+    }
+  }
 
   removeAllFilters(featureLayer: FeatureLayer | undefined, main?: boolean) {
     if (featureLayer) {
@@ -687,6 +773,7 @@ export class MapService {
       roomQueryParams.outFields = ['*'];
 
       const roomResult = await roomLayer.queryFeatures(roomQueryParams);
+      this.highlightFeatures(roomResult.features);
       const roomGeometries = roomResult.features.map((f) => f.geometry);
 
       if (roomGeometries.length === 0) {
@@ -756,5 +843,42 @@ export class MapService {
       console.error('Error during spatial intersection filter:', error);
       targetLayer.definitionExpression = '1=0';
     }
+  }
+  private highlightHandles: __esri.Handle[] = [];
+
+  /**
+   * Highlights features on the map
+   * @param features Features to highlight
+   */
+  highlightFeatures(features: __esri.Graphic[]): void {
+    // Clear previous highlights
+
+    if (!this.mapView) return;
+
+    if (!this.roomsLayerView) {
+      this.roomsLayerView = this.getRoomsLayerView();
+    }
+
+    this.roomsLayerView?.highlight(features);
+    features.forEach((feature) => {
+      this.mapView?.popup.open({
+        features: [feature],
+      });
+    });
+    // .then((handle) => {
+    //   // Store the highlight handle for later removal
+    //   this.highlightHandles.push(handle);
+    //   console.log('highlighted features', features);
+    // })
+    // .catch((error) => {
+    //   console.error('Error highlighting features:', error);
+    // });
+  }
+
+  /**
+   * Clears all current highlights
+   */
+  clearHighlights(): void {
+    this.roomsLayerView?.highlight([]);
   }
 }
