@@ -18,21 +18,12 @@ import { DashboardService } from './dashboard.service';
     TopPanelComponent,
     CardModule,
     CommonModule,
-    ThreeDMapComponent
 ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
   preference = inject(PreferenceService);
- is3DMode: boolean = false;
 
-  constructor(private dashboardService: DashboardService) {}
-
-  ngOnInit(): void {
-    this.dashboardService.is3DMode$.subscribe((mode) => {
-      this.is3DMode = mode;
-    });
-  }
 
 }
