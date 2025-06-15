@@ -33,6 +33,19 @@
       />
     </button>
 
+
+     <button
+      class="flex items-center px-4 py-2 gap-3 border-[1px] rounded-md"
+      [ngClass]="{
+        'border-[#ffff]': isDarkMode,
+        'border-[#88774F]': !isDarkMode
+      }"
+      (click)="show3D()"
+    >
+ Toggle 3D
+
+    </button>
+
     <div class="flex justify-center items-center">
 
 

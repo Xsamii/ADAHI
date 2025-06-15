@@ -496,4 +496,20 @@ export class DashboardService {
       }
     });
   }
+
+
+
+// 3D STUFF
+  private is3DModeSubject = new BehaviorSubject<boolean>(false);
+  is3DMode$ = this.is3DModeSubject.asObservable();
+
+  toggle3DMode() {
+    const current = this.is3DModeSubject.value;
+    this.is3DModeSubject.next(!current);
+  }
+
+  is3DActive(): boolean {
+    return this.is3DModeSubject.value;
+  }
+
 }

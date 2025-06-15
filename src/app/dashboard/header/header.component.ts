@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { DarkModeService } from '../../shared/services/dark-mode.service';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { DashboardService } from '../dashboard.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent {
 
   isDarkMode = false;
 
-  constructor(private darkModeService: DarkModeService) {
+  constructor(private darkModeService: DarkModeService, private dashboardService: DashboardService) {
     this.isDarkMode = this.darkModeService.currentMode;
   }
 
@@ -44,4 +45,8 @@ toggleLang() {
     console.log("YOU CLICKEd");
 
   }
+
+show3D() {
+ this.dashboardService.toggle3DMode();
+}
 }

@@ -40,16 +40,38 @@ export class MapComponent implements OnInit {
   legendVisible: boolean = false;
   layerlistDisplayer;
   ngOnInit() {
-    this.dashboardService.initMap();
-    this.threeDDashboardService.initMap();
-    this.mapService.addLayerList();
+    // this.dashboardService.initMap();
+    // this.threeDDashboardService.initMap();
+    // this.mapService.addLayerList();
     // this.threeDDMapService.addLayerList();
     // this.mapService.addPopupToFeatureLayer();
     // this.layerListToggler = this.dashboardService.displayLayerList;
     this.layerListToggler = this.threeDDashboardService.displayLayerList;
     this.basemapToggler = this.dashboardService.displayBaseMap;
     this.infoToggler = this.dashboardService.displayInfo;
-  }
+
+
+    this.dashboardService.is3DMode$.subscribe((is3D) => {
+    if (is3D) {
+      this.activate3DView();
+    } else {
+      this.activate2DView();
+    }
+  });
+
+  // Default view
+  this.activate2DView();
+}
+
+activate2DView() {
+  this.dashboardService.initMap();
+  this.mapService.addLayerList();
+}
+
+activate3DView() {
+  this.threeDDashboardService.initMap();
+  this.threeDDMapService.addLayerList();
+}
 
   showLegend() {
     this.legendVisible = !this.legendVisible;
