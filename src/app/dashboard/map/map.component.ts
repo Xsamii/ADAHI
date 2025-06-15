@@ -51,13 +51,13 @@ export class MapComponent implements OnInit {
     this.infoToggler = this.dashboardService.displayInfo;
 
 
-    this.dashboardService.is3DMode$.subscribe((is3D) => {
-    if (is3D) {
-      this.activate3DView();
-    } else {
-      this.activate2DView();
-    }
-  });
+  //   this.dashboardService.is3DMode$.subscribe((is3D) => {
+  //   if (is3D) {
+  //     this.activate3DView();
+  //   } else {
+  //     this.activate2DView();
+  //   }
+  // });
 
   // Default view
   this.activate2DView();

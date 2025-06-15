@@ -119,7 +119,7 @@ export class ThreeDDashboardService {
 
   initMap() {
     // this.mapView = this.mapService.initializeMap('map');
-    this.mapScene = this.mapService.initializeMap('map');
+    this.mapScene = this.mapService.initializeMap('map2');
 
     const generalPOpupTemplate = {
       title: '{Discipline}',

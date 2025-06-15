@@ -1,0 +1,8 @@
+<p-card #card class="layersCard " [ngStyle]="{ visibility: display ? 'visible' : 'hidden' }">
+  <ng-template pTemplate="header" class="flex h-10">
+    <h2 class="font-extrabold text-xl">{{ header }}</h2>
+    <button class="close-btn" (click)="close($event)">✖</button>
+  </ng-template>
+
+  <ng-content></ng-content>
+</p-card>
