@@ -292,8 +292,8 @@ export class MapService {
     if (this.mapView) {
       this.mapView.goTo(
         {
-          center: [39.8579, 21.3891],
-          zoom: 10,
+          center: [39.910253, 21.420512],
+          zoom: 18,
         },
         {
           duration: 1000, // Animation duration in milliseconds
@@ -443,16 +443,18 @@ export class MapService {
                   ...currentCounts,
                   [name as string]: count,
                 });
-                console.log('currentCounts', currentCounts);
+                // console.log(name, 'currentCounts', currentCounts);
               });
               // Initialize the extent with the first feature's extent
-              // let featuresExtent = result.features[0].geometry.extent.clone();
+              let featuresExtent = result.features[0].geometry.extent.clone();
               this.setFeatures(result.features);
-              // // Iterate over the rest of the features to union their extents
-              // result.features.forEach((feature) => {
-              //   featuresExtent = featuresExtent.union(feature.geometry.extent);
-              // });
-
+              // Iterate over the rest of the features to union their extents
+              result.features.forEach((feature) => {
+                featuresExtent = featuresExtent.union(feature.geometry.extent);
+                // console.log('feature layer', featureLayer);
+              });
+              console.log('extent', featuresExtent);
+              this.mapView?.goTo(featuresExtent.expand(1));
               // this.mapView?.goTo(featuresExtent.expand(1));
             }
           } else {
@@ -526,10 +528,25 @@ export class MapService {
                 });
                 console.log('currentCounts', currentCounts);
               });
+
+              // const currentCounts = this.featureCounts$.value;
+
+              // this.featureCounts$.next({
+              //   ...currentCounts,
+              //   [name as string]: result.features.length,
+              // });
+              // console.log('name', name, 'currentCounts', currentCounts);
+              let featuresExtent = result.features[0].geometry.extent.clone();
               this.setFeatures(result.features);
+              result.features.forEach((feature) => {
+                featuresExtent = featuresExtent.union(feature.geometry.extent);
+              });
+              console.log('going to extent', name, featuresExtent);
+              this.mapView?.goTo(featuresExtent.expand(1));
             }
           } else {
-            console.log('No features found.');
+            console.log(name, 'No features found.');
+            // console.log('No features found.');
           }
         })
         .catch((error) => {

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { MapService } from './map/map.service';
 import MapView from '@arcgis/core/views/MapView';
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
+import CustomContent from '@arcgis/core/popup/content/CustomContent';
+
 import { featureLayersConfig } from './map/featureLayersConfig';
 import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 import Statistics from './statistics.interface';
@@ -114,7 +116,7 @@ export class DashboardService {
   initMap() {
     this.mapView = this.mapService.initializeMap('map');
 
-    const generalPOpupTemplate = {
+    const generalPOpupTemplate: any = {
       title: '{Discipline}',
       content: [
         {
@@ -150,8 +152,66 @@ export class DashboardService {
             },
           ],
         },
+
+        new CustomContent({
+          outFields: ['*'],
+          creator: (graphic) => {
+            const attributes = graphic.graphic.attributes;
+            const objectId = attributes.OBJECTID_1;
+            const container = document.createElement('div');
+            container.style.textAlign = 'center';
+            container.style.marginTop = '12px';
+
+            const createStyledButton = (label: string, onClick: () => void) => {
+              const btn = document.createElement('button');
+              btn.textContent = label;
+              btn.style.backgroundColor = '#1976d2';
+              btn.style.color = '#fff';
+              btn.style.border = 'none';
+              btn.style.padding = '8px 12px';
+              btn.style.borderRadius = '4px';
+              btn.style.cursor = 'pointer';
+              btn.style.fontSize = '14px';
+              btn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+              btn.style.transition = 'background-color 0.3s ease';
+              btn.style.margin = '0 6px';
+
+              btn.onmouseover = () => (btn.style.backgroundColor = '#1565c0');
+              btn.onmouseout = () => (btn.style.backgroundColor = '#1976d2');
+
+              btn.onclick = (ev) => {
+                console.log(ev, objectId);
+              };
+
+              return btn;
+            };
+
+            const addButton = createStyledButton(
+              'Add Maintenance Request',
+              () => {
+                console.log('Add Maintenance for:', graphic.graphic.attributes);
+              }
+            );
+
+            const viewButton = createStyledButton(
+              'View Maintenance History',
+              () => {
+                console.log(
+                  'View Maintenance for:',
+                  graphic.graphic.attributes
+                );
+              }
+            );
+
+            container.appendChild(addButton);
+            container.appendChild(viewButton);
+
+            return container;
+          },
+        }),
       ],
     };
+
     this.featureLayers = featureLayersConfig.map((f) => {
       let popUpTemp = {};
       if (f.popupTemp) {
@@ -497,9 +557,7 @@ export class DashboardService {
     });
   }
 
-
-
-// 3D STUFF
+  // 3D STUFF
   private is3DModeSubject = new BehaviorSubject<boolean>(false);
   is3DMode$ = this.is3DModeSubject.asObservable();
 
@@ -511,5 +569,4 @@ export class DashboardService {
   is3DActive(): boolean {
     return this.is3DModeSubject.value;
   }
-
 }
