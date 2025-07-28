@@ -157,12 +157,16 @@ export class DashboardService {
           outFields: ['*'],
           creator: (graphic) => {
             const attributes = graphic.graphic.attributes;
+            // console.log('attributes', attributes);
             const objectId = attributes.OBJECTID_1;
             const container = document.createElement('div');
             container.style.textAlign = 'center';
             container.style.marginTop = '12px';
 
-            const createStyledButton = (label: string, onClick: () => void) => {
+            const createStyledButton = (
+              label: string,
+              onClick: (data) => void
+            ) => {
               const btn = document.createElement('button');
               btn.textContent = label;
               btn.style.backgroundColor = '#1976d2';
@@ -180,7 +184,7 @@ export class DashboardService {
               btn.onmouseout = () => (btn.style.backgroundColor = '#1976d2');
 
               btn.onclick = (ev) => {
-                console.log(ev, objectId);
+                onClick(attributes);
               };
 
               return btn;
@@ -188,8 +192,8 @@ export class DashboardService {
 
             const addButton = createStyledButton(
               'Add Maintenance Request',
-              () => {
-                console.log('Add Maintenance for:', graphic.graphic.attributes);
+              (at) => {
+                console.log('Add Maintenance for:', at);
               }
             );
 

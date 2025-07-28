@@ -18,12 +18,10 @@ import { DashboardService } from './dashboard.service';
     TopPanelComponent,
     CardModule,
     CommonModule,
-],
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
   preference = inject(PreferenceService);
-
-
 }
