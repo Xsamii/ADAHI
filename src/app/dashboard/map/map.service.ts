@@ -376,11 +376,11 @@ export class MapService {
               // console.log('feature layer', featureLayer);
               this.setFeatures(result.features);
               // Iterate over the rest of the features to union their extents
-              result.features.forEach((feature) => {
-                featuresExtent = featuresExtent.union(feature.geometry.extent);
-              });
+              // result.features.forEach((feature) => {
+              //   featuresExtent = featuresExtent.union(feature.geometry.extent);
+              // });
 
-              this.mapView?.goTo(featuresExtent.expand(1));
+              // this.mapView?.goTo(featuresExtent.expand(1));
             }
           } else {
             // console.log('hereeeeeeeeeeeeeeeee');
@@ -454,7 +454,7 @@ export class MapService {
                 // console.log('feature layer', featureLayer);
               });
               console.log('extent', featuresExtent);
-              this.mapView?.goTo(featuresExtent.expand(1));
+              // this.mapView?.goTo(featuresExtent.expand(1));
               // this.mapView?.goTo(featuresExtent.expand(1));
             }
           } else {
@@ -536,13 +536,13 @@ export class MapService {
               //   [name as string]: result.features.length,
               // });
               // console.log('name', name, 'currentCounts', currentCounts);
-              let featuresExtent = result.features[0].geometry.extent.clone();
-              this.setFeatures(result.features);
-              result.features.forEach((feature) => {
-                featuresExtent = featuresExtent.union(feature.geometry.extent);
-              });
-              console.log('going to extent', name, featuresExtent);
-              this.mapView?.goTo(featuresExtent.expand(1));
+              // let featuresExtent = result.features[0].geometry.extent.clone();
+              // this.setFeatures(result.features);
+              // result.features.forEach((feature) => {
+              //   featuresExtent = featuresExtent.union(feature.geometry.extent);
+              // });
+              // console.log('going to extent', name, featuresExtent);
+              // this.mapView?.goTo(featuresExtent.expand(1));
             }
           } else {
             console.log(name, 'No features found.');
