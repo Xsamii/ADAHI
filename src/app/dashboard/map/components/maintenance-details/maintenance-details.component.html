@@ -1,0 +1,193 @@
+<p-dialog
+  [header]="'MAINTENANCE.DIALOG_TITLE' | translate"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{
+    width: '80vw',
+    maxWidth: '1200px',
+    '--dialog-bg-color': preference.theme() === 'dark' ? '#252525' : '#FFFFFF',
+    '--dialog-text-color': preference.theme() === 'dark' ? '#FFFFFF' : '#000000',
+    '--dialog-border-color': preference.theme() === 'dark' ? '#404040' : '#e5e7eb'
+  }"
+  [closable]="true"
+  (onHide)="onClose()"
+  styleClass="maintenance-dialog">
+
+  <div class="dialog-content" *ngIf="equipmentData">
+    <p-tabView>
+      <!-- Equipment Details Tab -->
+      <p-tabPanel [header]="'MAINTENANCE.EQUIPMENT_DETAILS_TAB' | translate">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+          <!-- Basic Equipment Info -->
+          <p-card [header]="'MAINTENANCE.BASIC_INFO' | translate" [ngStyle]="{
+            'background-color': preference.theme() === 'dark' ? '#1A1A1A' : '#F9FAFB',
+            'color': preference.theme() === 'dark' ? '#FFFFFF' : '#000000'
+          }">
+            <div class="space-y-4">
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.FAMILY' | translate }}:</span>
+                <span>{{ equipmentData.Family || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.TYPE' | translate }}:</span>
+                <span>{{ equipmentData.FamilyType || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.SERIAL_NUMBER' | translate }}:</span>
+                <span>{{ equipmentData.OBJECTID_1 || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.MARK' | translate }}:</span>
+                <span>{{ equipmentData.Mark || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.DISCIPLINE' | translate }}:</span>
+                <span>{{ equipmentData.Discipline || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+            </div>
+          </p-card>
+
+          <!-- Location Info -->
+          <p-card [header]="'MAINTENANCE.LOCATION_INFO' | translate" [ngStyle]="{
+            'background-color': preference.theme() === 'dark' ? '#1A1A1A' : '#F9FAFB',
+            'color': preference.theme() === 'dark' ? '#FFFFFF' : '#000000'
+          }">
+            <div class="space-y-4">
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.BUILDING_NAME' | translate }}:</span>
+                <span>{{ equipmentData.Bldg_Name || equipmentData.Project_Name || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.FLOOR' | translate }}:</span>
+                <span>{{ equipmentData.BldgLevel_Desc || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.FLOOR_ELEVATION' | translate }}:</span>
+                <span>{{ equipmentData.BldgLevel_Elev ? (equipmentData.BldgLevel_Elev | number:'1.2-2') + ' ' + ('MAINTENANCE.METERS' | translate) : ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.WORKSET' | translate }}:</span>
+                <span>{{ equipmentData.Workset || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+            </div>
+          </p-card>
+
+          <!-- System Info -->
+          <p-card [header]="'MAINTENANCE.SYSTEM_INFO' | translate" [ngStyle]="{
+            'background-color': preference.theme() === 'dark' ? '#1A1A1A' : '#F9FAFB',
+            'color': preference.theme() === 'dark' ? '#FFFFFF' : '#000000'
+          }">
+            <div class="space-y-4">
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.SYSTEM_NAME' | translate }}:</span>
+                <span>{{ equipmentData.SYSTEM_NAME || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.SUB_DISCIPLINE' | translate }}:</span>
+                <span>{{ equipmentData.SUB_DISCIPLINE || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.SUB_SUB_DISCIPLINE' | translate }}:</span>
+                <span>{{ equipmentData.SUB_SUB_DISCIPLINE || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.SYSTEM_CLASS' | translate }}:</span>
+                <span>{{ equipmentData.SystemClass || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+            </div>
+          </p-card>
+
+          <!-- Technical Details -->
+          <p-card [header]="'MAINTENANCE.TECHNICAL_DETAILS' | translate" [ngStyle]="{
+            'background-color': preference.theme() === 'dark' ? '#1A1A1A' : '#F9FAFB',
+            'color': preference.theme() === 'dark' ? '#FFFFFF' : '#000000'
+          }">
+            <div class="space-y-4">
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.MANUFACTURER' | translate }}:</span>
+                <span>{{ equipmentData.Manufacturer || equipmentData.Main_Manufacturer || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.MODEL' | translate }}:</span>
+                <span>{{ equipmentData.Main_Model || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.MANUFACTURER_SERIAL' | translate }}:</span>
+                <span>{{ equipmentData.Main_manufacturer_Serial_number || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="font-semibold">{{ 'MAINTENANCE.COMMENTS' | translate }}:</span>
+                <span>{{ equipmentData.Comments || ('MAINTENANCE.NO_COMMENTS' | translate) }}</span>
+              </div>
+            </div>
+          </p-card>
+        </div>
+
+        <!-- Document Info -->
+        <p-divider></p-divider>
+        <p-card [header]="'MAINTENANCE.DOCUMENT_INFO' | translate" [ngStyle]="{
+          'background-color': preference.theme() === 'dark' ? '#1A1A1A' : '#F9FAFB',
+          'color': preference.theme() === 'dark' ? '#FFFFFF' : '#000000'
+        }">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="flex flex-col space-y-2">
+              <span class="font-semibold">{{ 'MAINTENANCE.DOCUMENT_NAME' | translate }}:</span>
+              <span class="text-sm break-words">{{ equipmentData.DocName || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <span class="font-semibold">{{ 'MAINTENANCE.DOCUMENT_TYPE' | translate }}:</span>
+              <span>{{ equipmentData.DocType || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <span class="font-semibold">{{ 'MAINTENANCE.DOCUMENT_VERSION' | translate }}:</span>
+              <span>{{ equipmentData.DocVer || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+            </div>
+          </div>
+        </p-card>
+      </p-tabPanel>
+
+      <!-- Maintenance History Tab -->
+      <p-tabPanel [header]="'MAINTENANCE.MAINTENANCE_HISTORY_TAB' | translate">
+        <div class="text-center py-8">
+          <i class="pi pi-wrench text-4xl mb-4" [ngClass]="preference.theme() === 'dark' ? 'text-gray-400' : 'text-gray-400'"></i>
+          <h3 class="text-xl font-semibold mb-2" [ngClass]="preference.theme() === 'dark' ? 'text-gray-300' : 'text-gray-600'">{{ 'MAINTENANCE.NO_MAINTENANCE_HISTORY' | translate }}</h3>
+          <p class="mb-4" [ngClass]="preference.theme() === 'dark' ? 'text-gray-400' : 'text-gray-500'">{{ 'MAINTENANCE.MAINTENANCE_HISTORY_PLACEHOLDER' | translate }}</p>
+          <p-button
+            [label]="'MAINTENANCE.CREATE_NEW_REQUEST' | translate"
+            icon="pi pi-plus"
+            (onClick)="onCreateMaintenance()"
+            severity="success">
+          </p-button>
+        </div>
+      </p-tabPanel>
+
+      <!-- Raw Data Tab (for development) -->
+      <p-tabPanel [header]="'MAINTENANCE.RAW_DATA_TAB' | translate" *ngIf="showRawData">
+        <div class="p-4 rounded-lg max-h-96 overflow-auto" [ngStyle]="{
+          'background-color': preference.theme() === 'dark' ? '#1A1A1A' : '#F9FAFB',
+          'color': preference.theme() === 'dark' ? '#FFFFFF' : '#000000'
+        }">
+          <pre class="text-xs whitespace-pre-wrap">{{ equipmentData | json }}</pre>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <div class="flex justify-between gap-4">
+      <p-button
+        [label]="'MAINTENANCE.CREATE_MAINTENANCE' | translate"
+        icon="pi pi-plus"
+        (onClick)="onCreateMaintenance()"
+        severity="success">
+      </p-button>
+      <p-button
+        [label]="'MAINTENANCE.CLOSE' | translate"
+        icon="pi pi-times"
+        (onClick)="onClose()"
+        severity="secondary">
+      </p-button>
+    </div>
+  </ng-template>
+</p-dialog>

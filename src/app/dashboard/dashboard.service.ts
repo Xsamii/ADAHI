@@ -106,6 +106,10 @@ export class DashboardService {
     new BehaviorSubject<EngineeringDisciplineType[]>(engineeringDisciplines);
   rooms: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
+maintenanceDialogVisible: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+selectedEquipmentData: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+maintenanceRequestDialogVisible: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   //   private featuresNames: string[] = [];
 
   /**
@@ -163,49 +167,95 @@ export class DashboardService {
             container.style.textAlign = 'center';
             container.style.marginTop = '12px';
 
-            const createStyledButton = (
-              label: string,
-              onClick: (data) => void
-            ) => {
-              const btn = document.createElement('button');
-              btn.textContent = label;
-              btn.style.backgroundColor = '#1976d2';
-              btn.style.color = '#fff';
-              btn.style.border = 'none';
-              btn.style.padding = '8px 12px';
-              btn.style.borderRadius = '4px';
-              btn.style.cursor = 'pointer';
-              btn.style.fontSize = '14px';
-              btn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
-              btn.style.transition = 'background-color 0.3s ease';
-              btn.style.margin = '0 6px';
+            // const createStyledButton = (
+            //   label: string,
+            //   onClick: (data) => void
+            // ) => {
+            //   const btn = document.createElement('button');
+            //   btn.textContent = label;
+            //   btn.style.backgroundColor = '#1976d2';
+            //   btn.style.color = '#fff';
+            //   btn.style.border = 'none';
+            //   btn.style.padding = '8px 12px';
+            //   btn.style.borderRadius = '4px';
+            //   btn.style.cursor = 'pointer';
+            //   btn.style.fontSize = '14px';
+            //   btn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+            //   btn.style.transition = 'background-color 0.3s ease';
+            //   btn.style.margin = '0 6px';
 
-              btn.onmouseover = () => (btn.style.backgroundColor = '#1565c0');
-              btn.onmouseout = () => (btn.style.backgroundColor = '#1976d2');
+            //   btn.onmouseover = () => (btn.style.backgroundColor = '#1565c0');
+            //   btn.onmouseout = () => (btn.style.backgroundColor = '#1976d2');
 
-              btn.onclick = (ev) => {
-                onClick(attributes);
-              };
+            //   btn.onclick = (ev) => {
+            //     onClick(attributes);
+            //   };
 
-              return btn;
-            };
+            //   return btn;
+            // };
 
-            const addButton = createStyledButton(
-              'Add Maintenance Request',
-              (at) => {
-                console.log('Add Maintenance for:', at);
-              }
-            );
+            // const addButton = createStyledButton(
+            //   'Add Maintenance Request',
+            //   (at) => {
+            //     console.log('Add Maintenance for:', at);
+            //   }
+            // );
 
-            const viewButton = createStyledButton(
-              'View Maintenance History',
-              () => {
-                console.log(
-                  'View Maintenance for:',
-                  graphic.graphic.attributes
-                );
-              }
-            );
+            // const viewButton = createStyledButton(
+            //   'View Maintenance History',
+            //   () => {
+            //     console.log(
+            //       'View Maintenance for:',
+            //       graphic.graphic.attributes
+            //     );
+            //   }
+            // );
+
+
+
+
+const createStyledButton = (
+  label: string,
+  onClick: (data) => void
+) => {
+  const btn = document.createElement('button');
+  btn.textContent = label;
+  btn.style.backgroundColor = '#1976d2';
+  btn.style.color = '#fff';
+  btn.style.border = 'none';
+  btn.style.padding = '8px 12px';
+  btn.style.borderRadius = '4px';
+  btn.style.cursor = 'pointer';
+  btn.style.fontSize = '14px';
+  btn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+  btn.style.transition = 'background-color 0.3s ease';
+  btn.style.margin = '0 6px';
+
+  btn.onmouseover = () => (btn.style.backgroundColor = '#1565c0');
+  btn.onmouseout = () => (btn.style.backgroundColor = '#1976d2');
+
+  btn.onclick = (ev) => {
+    onClick(attributes);
+  };
+
+  return btn;
+};
+
+const addButton = createStyledButton(
+  'Add Maintenance Request',
+  (attributes) => {
+    console.log('Add Maintenance for:', attributes);
+    this.onCreateMaintenanceRequest(attributes);
+  }
+);
+
+const viewButton = createStyledButton(
+  'View Maintenance History',
+  (attributes) => {
+    console.log('View Maintenance for:', attributes);
+    this.openMaintenanceDialog(attributes);
+  }
+);
 
             container.appendChild(addButton);
             container.appendChild(viewButton);
@@ -573,4 +623,40 @@ export class DashboardService {
   is3DActive(): boolean {
     return this.is3DModeSubject.value;
   }
+
+
+
+
+
+
+//===========================================
+//
+openMaintenanceDialog(equipmentData: any) {
+  this.selectedEquipmentData.next(equipmentData);
+  this.maintenanceDialogVisible.next(true);
+}
+
+closeMaintenanceDialog() {
+  this.maintenanceDialogVisible.next(false);
+  this.selectedEquipmentData.next(null);
+}
+
+onCreateMaintenanceRequest(equipmentData: any) {
+  this.selectedEquipmentData.next(equipmentData);
+  this.maintenanceRequestDialogVisible.next(true);
+}
+
+closeMaintenanceRequestDialog() {
+  this.maintenanceRequestDialogVisible.next(false);
+}
+
+onMaintenanceRequestSubmitted(maintenanceRequest: any) {
+  console.log('Maintenance request submitted:', maintenanceRequest);
+  // Here you'll integrate with your backend API
+  this.closeMaintenanceRequestDialog();
+}
+
+
+
+
 }

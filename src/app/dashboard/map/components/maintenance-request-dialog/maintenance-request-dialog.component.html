@@ -1,0 +1,305 @@
+ <p-dialog
+      [header]="'MAINTENANCE_REQUEST.DIALOG_TITLE' | translate"
+      [modal]="true"
+      [(visible)]="visible"
+      [style]="{
+        width: '90vw',
+        maxWidth: '800px',
+        '--dialog-bg-color': preference.theme() === 'dark' ? '#252525' : '#FFFFFF',
+        '--dialog-text-color': preference.theme() === 'dark' ? '#FFFFFF' : '#000000',
+        '--dialog-border-color': preference.theme() === 'dark' ? '#404040' : '#e5e7eb'
+      }"
+      [closable]="true"
+      [draggable]="false"
+      [resizable]="false"
+      (onHide)="onClose()"
+      styleClass="maintenance-request-dialog">
+
+      <div class="dialog-content" *ngIf="equipmentData">
+
+        <!-- Equipment Summary Card -->
+        <div class="mb-6">
+          <p-card [header]="'MAINTENANCE_REQUEST.EQUIPMENT_SUMMARY' | translate" [ngStyle]="{
+            'background-color': preference.theme() === 'dark' ? '#1A1A1A' : '#F9FAFB',
+            'color': preference.theme() === 'dark' ? '#FFFFFF' : '#000000'
+          }">
+            <div class="flex flex-col md:flex-row gap-4 text-sm">
+              <div class="flex-1">
+                <span class="font-semibold">{{ 'MAINTENANCE.FAMILY' | translate }}:</span>
+                <span class="mr-2">{{ equipmentData.Family || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex-1">
+                <span class="font-semibold">{{ 'MAINTENANCE.SYSTEM_NAME' | translate }}:</span>
+                <span class="mr-2">{{ equipmentData.SYSTEM_NAME || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+              <div class="flex-1">
+                <span class="font-semibold">{{ 'MAINTENANCE.FLOOR' | translate }}:</span>
+                <span class="mr-2">{{ equipmentData.BldgLevel_Desc || ('MAINTENANCE.NOT_SPECIFIED' | translate) }}</span>
+              </div>
+            </div>
+          </p-card>
+        </div>
+
+        <!-- Maintenance Request Form -->
+        <form [formGroup]="maintenanceForm" (ngSubmit)="onSubmit()">
+
+          <!-- Request Details Section -->
+          <div class="mb-6">
+            <p-card [header]="'MAINTENANCE_REQUEST.REQUEST_DETAILS' | translate" [ngStyle]="{
+              'background-color': preference.theme() === 'dark' ? '#1A1A1A' : '#F9FAFB',
+              'color': preference.theme() === 'dark' ? '#FFFFFF' : '#000000'
+            }">
+
+              <div class="space-y-6">
+
+                <!-- First Row: Request Type and Priority -->
+                <div class="flex flex-col md:flex-row gap-6">
+
+                  <!-- Request Type -->
+                  <div class="flex-1">
+                    <label for="requestType" class="block font-semibold mb-2 text-sm">
+                      {{ 'MAINTENANCE_REQUEST.REQUEST_TYPE' | translate }} *
+                    </label>
+                    <p-dropdown
+                      id="requestType"
+                      formControlName="requestType"
+                      [options]="requestTypes"
+                      optionLabel="label"
+                      optionValue="value"
+                      [placeholder]="'MAINTENANCE_REQUEST.SELECT_REQUEST_TYPE' | translate"
+                     [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
+                      [ngClass]="{'ng-invalid ng-dirty': maintenanceForm.get('requestType')?.invalid && maintenanceForm.get('requestType')?.touched}">
+                    </p-dropdown>
+                    <small *ngIf="maintenanceForm.get('requestType')?.invalid && maintenanceForm.get('requestType')?.touched"
+                           class="text-red-500 text-xs mt-1 block">
+                      {{ 'MAINTENANCE_REQUEST.FIELD_REQUIRED' | translate }}
+                    </small>
+                  </div>
+
+                  <!-- Issue Category -->
+                  <div class="flex-1">
+                    <label for="issueCategory" class="block font-semibold mb-2 text-sm">
+                      {{ 'MAINTENANCE_REQUEST.ISSUE_CATEGORY' | translate }} *
+                    </label>
+                    <p-dropdown
+                      id="issueCategory"
+                      formControlName="issueCategory"
+                      [options]="issueCategories"
+                      optionLabel="label"
+                      optionValue="value"
+                      [placeholder]="'MAINTENANCE_REQUEST.SELECT_CATEGORY' | translate"
+                     [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
+                      [ngClass]="{'ng-invalid ng-dirty': maintenanceForm.get('issueCategory')?.invalid && maintenanceForm.get('issueCategory')?.touched}">
+                    </p-dropdown>
+                    <small *ngIf="maintenanceForm.get('issueCategory')?.invalid && maintenanceForm.get('issueCategory')?.touched"
+                           class="text-red-500 text-xs mt-1 block">
+                      {{ 'MAINTENANCE_REQUEST.FIELD_REQUIRED' | translate }}
+                    </small>
+                  </div>
+
+                </div>
+
+                <!-- Second Row: Priority -->
+                <div>
+                  <label class="block font-semibold mb-3 text-sm">
+                    {{ 'MAINTENANCE_REQUEST.PRIORITY' | translate }} *
+                  </label>
+                  <div class="flex flex-wrap gap-6">
+                    <div *ngFor="let priority of priorities" class="flex items-center">
+                      <p-radioButton
+                        [id]="priority.value"
+                        [value]="priority.value"
+                        formControlName="priority"
+                        styleClass="custom-radio">
+                      </p-radioButton>
+                      <label [for]="priority.value" class="mr-2 text-sm cursor-pointer">{{ priority.label | translate }}</label>
+                    </div>
+                  </div>
+                  <small *ngIf="maintenanceForm.get('priority')?.invalid && maintenanceForm.get('priority')?.touched"
+                         class="text-red-500 text-xs mt-1 block">
+                    {{ 'MAINTENANCE_REQUEST.FIELD_REQUIRED' | translate }}
+                  </small>
+                </div>
+
+                <!-- Third Row: Scheduled Date -->
+                <div>
+                  <label for="scheduledDate" class="block font-semibold mb-2 text-sm">
+                    {{ 'MAINTENANCE_REQUEST.SCHEDULED_DATE' | translate }}
+                  </label>
+                  <p-calendar
+                    id="scheduledDate"
+                    formControlName="scheduledDate"
+                    [showIcon]="true"
+                    [placeholder]="'MAINTENANCE_REQUEST.SELECT_DATE' | translate"
+                    [inputStyleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
+                    [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'">
+                  </p-calendar>
+                </div>
+
+                <!-- Description -->
+                <div>
+                  <label for="description" class="block font-semibold mb-2 text-sm">
+                    {{ 'MAINTENANCE_REQUEST.DESCRIPTION' | translate }} *
+                  </label>
+                  <textarea
+                    id="description"
+                    pInputTextarea
+                    formControlName="description"
+                    rows="4"
+                    class="w-full custom-textarea"
+                    [placeholder]="'MAINTENANCE_REQUEST.DESCRIPTION_PLACEHOLDER' | translate"
+                    [ngClass]="{'ng-invalid ng-dirty': maintenanceForm.get('description')?.invalid && maintenanceForm.get('description')?.touched}">
+                  </textarea>
+                  <small *ngIf="maintenanceForm.get('description')?.invalid && maintenanceForm.get('description')?.touched"
+                         class="text-red-500 text-xs mt-1 block">
+                    {{ 'MAINTENANCE_REQUEST.FIELD_REQUIRED' | translate }}
+                  </small>
+                </div>
+
+              </div>
+            </p-card>
+          </div>
+
+          <!-- Additional Details Section -->
+          <div class="mb-6">
+            <p-card [header]="'MAINTENANCE_REQUEST.ADDITIONAL_DETAILS' | translate" [ngStyle]="{
+              'background-color': preference.theme() === 'dark' ? '#1A1A1A' : '#F9FAFB',
+              'color': preference.theme() === 'dark' ? '#FFFFFF' : '#000000'
+            }">
+
+              <div class="space-y-6">
+
+                <!-- First Row: Requested By and Contact Info -->
+                <div class="flex flex-col md:flex-row gap-6">
+
+                  <!-- Requested By -->
+                  <div class="flex-1">
+                    <label for="requestedBy" class="block font-semibold mb-2 text-sm">
+                      {{ 'MAINTENANCE_REQUEST.REQUESTED_BY' | translate }} *
+                    </label>
+                    <input
+                      id="requestedBy"
+                      type="text"
+                      pInputText
+                      formControlName="requestedBy"
+                      class="w-full custom-input"
+                      [placeholder]="'MAINTENANCE_REQUEST.ENTER_NAME' | translate"
+                      [ngClass]="{'ng-invalid ng-dirty': maintenanceForm.get('requestedBy')?.invalid && maintenanceForm.get('requestedBy')?.touched}">
+                    <small *ngIf="maintenanceForm.get('requestedBy')?.invalid && maintenanceForm.get('requestedBy')?.touched"
+                           class="text-red-500 text-xs mt-1 block">
+                      {{ 'MAINTENANCE_REQUEST.FIELD_REQUIRED' | translate }}
+                    </small>
+                  </div>
+
+                  <!-- Contact Info -->
+                  <div class="flex-1">
+                    <label for="contactInfo" class="block font-semibold mb-2 text-sm">
+                      {{ 'MAINTENANCE_REQUEST.CONTACT_INFO' | translate }} *
+                    </label>
+                    <input
+                      id="contactInfo"
+                      type="text"
+                      pInputText
+                      formControlName="contactInfo"
+                      class="w-full custom-input"
+                      [placeholder]="'MAINTENANCE_REQUEST.ENTER_CONTACT' | translate"
+                      [ngClass]="{'ng-invalid ng-dirty': maintenanceForm.get('contactInfo')?.invalid && maintenanceForm.get('contactInfo')?.touched}">
+                    <small *ngIf="maintenanceForm.get('contactInfo')?.invalid && maintenanceForm.get('contactInfo')?.touched"
+                           class="text-red-500 text-xs mt-1 block">
+                      {{ 'MAINTENANCE_REQUEST.FIELD_REQUIRED' | translate }}
+                    </small>
+                  </div>
+
+                </div>
+
+                <!-- Second Row: Assigned To and Estimated Duration -->
+                <div class="flex flex-col md:flex-row gap-6">
+
+                  <!-- Assigned To -->
+                  <div class="flex-1">
+                    <label for="assignedTo" class="block font-semibold mb-2 text-sm">
+                      {{ 'MAINTENANCE_REQUEST.ASSIGNED_TO' | translate }}
+                    </label>
+                    <p-dropdown
+                      id="assignedTo"
+                      formControlName="assignedTo"
+                      [options]="technicians"
+                      optionLabel="label"
+                      optionValue="value"
+                      [placeholder]="'MAINTENANCE_REQUEST.SELECT_TECHNICIAN' | translate"
+                      [styleClass]=" preference.theme() === 'dark' ? 'bg-black border-gray-700 text-white w-full border-2 border-gray-100 rounded-[0.34rem] p-1' : 'bg-white border-gray-100 text-gray-900 w-full border-2 border-gray-100 rounded-[0.34rem] p-1'"
+                      >
+                    </p-dropdown>
+                  </div>
+
+                  <!-- Estimated Duration -->
+                  <div class="flex-1">
+                    <label for="estimatedDuration" class="block font-semibold mb-2 text-sm">
+                      {{ 'MAINTENANCE_REQUEST.ESTIMATED_DURATION' | translate }} ({{ 'MAINTENANCE_REQUEST.HOURS' | translate }})
+                    </label>
+                    <input
+                      id="estimatedDuration"
+                      type="number"
+                      pInputText
+                      formControlName="estimatedDuration"
+                      class="w-full custom-input"
+                      [placeholder]="'MAINTENANCE_REQUEST.ENTER_HOURS' | translate">
+                  </div>
+
+                </div>
+
+                <!-- Required Parts -->
+                <div>
+                  <label for="requiredParts" class="block font-semibold mb-2 text-sm">
+                    {{ 'MAINTENANCE_REQUEST.REQUIRED_PARTS' | translate }}
+                  </label>
+                  <textarea
+                    id="requiredParts"
+                    pInputTextarea
+                    formControlName="requiredParts"
+                    rows="3"
+                    class="w-full custom-textarea"
+                    [placeholder]="'MAINTENANCE_REQUEST.PARTS_PLACEHOLDER' | translate">
+                  </textarea>
+                </div>
+
+                <!-- Special Instructions -->
+                <div>
+                  <label for="specialInstructions" class="block font-semibold mb-2 text-sm">
+                    {{ 'MAINTENANCE_REQUEST.SPECIAL_INSTRUCTIONS' | translate }}
+                  </label>
+                  <textarea
+                    id="specialInstructions"
+                    pInputTextarea
+                    formControlName="specialInstructions"
+                    rows="3"
+                    class="w-full custom-textarea"
+                    [placeholder]="'MAINTENANCE_REQUEST.INSTRUCTIONS_PLACEHOLDER' | translate">
+                  </textarea>
+                </div>
+
+              </div>
+            </p-card>
+          </div>
+
+        </form>
+      </div>
+
+      <ng-template pTemplate="footer">
+        <div class="flex justify-between gap-4">
+          <p-button
+            [label]="'MAINTENANCE_REQUEST.SUBMIT_REQUEST' | translate"
+            icon="pi pi-check"
+            (onClick)="onSubmit()"
+            [disabled]="maintenanceForm.invalid"
+            severity="success">
+          </p-button>
+          <p-button
+            [label]="'MAINTENANCE.CLOSE' | translate"
+            icon="pi pi-times"
+            (onClick)="onClose()"
+            severity="secondary">
+          </p-button>
+        </div>
+      </ng-template>
+    </p-dialog>

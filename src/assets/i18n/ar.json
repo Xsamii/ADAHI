@@ -1,17 +1,15 @@
-
 {
   "NAV":{
     "TITLE": "منصة ادراة مشروع الاضاحي"
   },
-  "GEOPROCESSING":
-  {"OBSERVATIONS": "عرض الملاحظات",
-  "HEATMAP": "الخريطة الحرارية",
-  "CLUSTERING": "التكتل",
-  "HEXAGON": "سداسي",
-  "FISHNET": "الشبكة"
-},
-  "FILTERS":
-  {
+  "GEOPROCESSING": {
+    "OBSERVATIONS": "عرض الملاحظات",
+    "HEATMAP": "الخريطة الحرارية",
+    "CLUSTERING": "التكتل",
+    "HEXAGON": "سداسي",
+    "FISHNET": "الشبكة"
+  },
+  "FILTERS": {
     "MUNICIPALITY": "البلدية",
     "CHOOSEMUNICIPALITY": "اختر بلدية",
     "NEIGHBORHOOD": "الحي",
@@ -32,5 +30,94 @@
     "OPTION4": "جولة الرصد 4",
     "OPTION5": "جولة الرصد 5",
     "OPTION6": "جولة الرصد 6"
+  },
+  "MAINTENANCE": {
+    "DIALOG_TITLE": "تفاصيل المعدة والصيانة",
+    "EQUIPMENT_DETAILS_TAB": "تفاصيل المعدة",
+    "MAINTENANCE_HISTORY_TAB": "سجل الصيانة",
+    "RAW_DATA_TAB": "البيانات الخام",
+    "BASIC_INFO": "معلومات أساسية",
+    "LOCATION_INFO": "معلومات الموقع",
+    "SYSTEM_INFO": "معلومات النظام",
+    "TECHNICAL_DETAILS": "تفاصيل تقنية",
+    "DOCUMENT_INFO": "معلومات الوثيقة",
+    "FAMILY": "العائلة",
+    "TYPE": "النوع",
+    "SERIAL_NUMBER": "الرقم التسلسلي",
+    "MARK": "العلامة",
+    "DISCIPLINE": "التخصص",
+    "BUILDING_NAME": "اسم المبنى",
+    "FLOOR": "الطابق",
+    "FLOOR_ELEVATION": "ارتفاع الطابق",
+    "WORKSET": "مجموعة العمل",
+    "SYSTEM_NAME": "اسم النظام",
+    "SUB_DISCIPLINE": "التخصص الفرعي",
+    "SUB_SUB_DISCIPLINE": "التخصص الفرعي الفرعي",
+    "SYSTEM_CLASS": "فئة النظام",
+    "MANUFACTURER": "الشركة المصنعة",
+    "MODEL": "الموديل",
+    "MANUFACTURER_SERIAL": "الرقم التسلسلي للشركة",
+    "COMMENTS": "ملاحظات",
+    "DOCUMENT_NAME": "اسم الوثيقة",
+    "DOCUMENT_TYPE": "نوع الوثيقة",
+    "DOCUMENT_VERSION": "إصدار الوثيقة",
+    "NOT_SPECIFIED": "غير محدد",
+    "NO_COMMENTS": "لا توجد ملاحظات",
+    "NO_MAINTENANCE_HISTORY": "لا يوجد سجل صيانة حالياً",
+    "MAINTENANCE_HISTORY_PLACEHOLDER": "سيتم عرض سجل الصيانة هنا عند توفره",
+    "CREATE_NEW_REQUEST": "إنشاء طلب صيانة جديد",
+    "CREATE_MAINTENANCE": "إنشاء طلب صيانة",
+    "CLOSE": "إغلاق",
+    "METERS": "م"
+  },
+  "MAINTENANCE_REQUEST": {
+  "DIALOG_TITLE": "إنشاء طلب صيانة",
+  "EQUIPMENT_SUMMARY": "ملخص المعدة",
+  "REQUEST_DETAILS": "تفاصيل الطلب",
+  "ADDITIONAL_DETAILS": "تفاصيل إضافية",
+  "REQUEST_TYPE": "نوع الطلب",
+  "SELECT_REQUEST_TYPE": "اختر نوع الطلب",
+  "PRIORITY": "الأولوية",
+  "ISSUE_CATEGORY": "فئة المشكلة",
+  "SELECT_CATEGORY": "اختر الفئة",
+  "SCHEDULED_DATE": "التاريخ المجدول",
+  "SELECT_DATE": "اختر التاريخ",
+  "DESCRIPTION": "الوصف",
+  "DESCRIPTION_PLACEHOLDER": "اوصف المشكلة أو الصيانة المطلوبة...",
+  "REQUESTED_BY": "مقدم الطلب",
+  "ENTER_NAME": "أدخل اسمك",
+  "CONTACT_INFO": "معلومات الاتصال",
+  "ENTER_CONTACT": "أدخل الهاتف أو البريد الإلكتروني",
+  "ASSIGNED_TO": "مخصص لـ",
+  "SELECT_TECHNICIAN": "اختر الفني",
+  "ESTIMATED_DURATION": "المدة المقدرة",
+  "HOURS": "ساعات",
+  "ENTER_HOURS": "أدخل الساعات",
+  "REQUIRED_PARTS": "القطع المطلوبة",
+  "PARTS_PLACEHOLDER": "اذكر أي قطع أو مواد مطلوبة...",
+  "SPECIAL_INSTRUCTIONS": "تعليمات خاصة",
+  "INSTRUCTIONS_PLACEHOLDER": "أي تعليمات خاصة أو متطلبات أمان...",
+  "SUBMIT_REQUEST": "إرسال الطلب",
+  "FIELD_REQUIRED": "هذا الحقل مطلوب",
+  "TYPES": {
+    "PREVENTIVE": "وقائية",
+    "CORRECTIVE": "تصحيحية",
+    "EMERGENCY": "طارئة",
+    "INSPECTION": "فحص"
+  },
+  "PRIORITIES": {
+    "LOW": "منخفضة",
+    "MEDIUM": "متوسطة",
+    "HIGH": "عالية",
+    "CRITICAL": "حرجة"
+  },
+  "CATEGORIES": {
+    "MECHANICAL": "ميكانيكية",
+    "ELECTRICAL": "كهربائية",
+    "PLUMBING": "سباكة",
+    "HVAC": "تكييف وتهوية",
+    "SAFETY": "أمان",
+    "OTHER": "أخرى"
+  }
 }
 }

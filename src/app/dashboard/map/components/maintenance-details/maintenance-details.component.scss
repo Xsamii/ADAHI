@@ -1,0 +1,114 @@
+  .dialog-content {
+      min-height: 400px;
+    }
+
+    /* PrimeNG Dialog Content Padding */
+    :host ::ng-deep .p-dialog-content {
+      padding: 1.5rem !important;
+    }
+
+    /* PrimeNG Dialog Header Styling */
+    :host ::ng-deep .p-dialog .p-dialog-header {
+      padding: 1rem 1.5rem !important;
+      font-weight: 600 !important;
+      font-size: 1.1rem !important;
+    }
+
+    /* PrimeNG Dialog Body */
+    :host ::ng-deep .p-dialog .p-dialog-content {
+      padding: 1.5rem !important;
+    }
+
+    /* PrimeNG Dialog Footer */
+    :host ::ng-deep .p-dialog .p-dialog-footer {
+      padding: 1rem 1.5rem !important;
+      border-top: 1px solid #e5e7eb !important;
+    }
+
+    /* Dark theme for dialog */
+    :host ::ng-deep .p-dialog.maintenance-dialog {
+      background-color: var(--dialog-bg-color) !important;
+      color: var(--dialog-text-color) !important;
+      border-radius: 8px !important;
+    }
+
+    :host ::ng-deep .p-dialog.maintenance-dialog .p-dialog-header {
+      background-color: var(--dialog-bg-color) !important;
+      color: var(--dialog-text-color) !important;
+      border-bottom: 1px solid var(--dialog-border-color) !important;
+    }
+
+    :host ::ng-deep .p-dialog.maintenance-dialog .p-dialog-content {
+      background-color: var(--dialog-bg-color) !important;
+      color: var(--dialog-text-color) !important;
+    }
+
+    :host ::ng-deep .p-dialog.maintenance-dialog .p-dialog-footer {
+      background-color: var(--dialog-bg-color) !important;
+      color: var(--dialog-text-color) !important;
+      border-top: 1px solid var(--dialog-border-color) !important;
+    }
+
+    /* TabView dark theme */
+    :host ::ng-deep .p-tabview .p-tabview-nav {
+      background-color: var(--dialog-bg-color) !important;
+    }
+
+    :host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+      background-color: var(--dialog-bg-color) !important;
+      color: var(--dialog-text-color) !important;
+    }
+
+    :host ::ng-deep .p-tabview .p-tabview-panels {
+      background-color: var(--dialog-bg-color) !important;
+      color: var(--dialog-text-color) !important;
+    }
+
+    /* Card styling with theme support */
+    :host ::ng-deep .p-card {
+      margin-bottom: 1rem !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    :host ::ng-deep .p-card .p-card-body {
+      padding: 0.5rem 1.5rem 1.5rem 1.5rem !important;
+      background-color: inherit !important;
+      color: inherit !important;
+    }
+
+    :host ::ng-deep .p-card .p-card-title {
+      padding: 1rem 1.5rem 0.5rem 1.5rem !important;
+      font-weight: 600 !important;
+      font-size: 1.1rem !important;
+      background-color: inherit !important;
+      color: inherit !important;
+      margin: 0 !important;
+    }
+
+    :host ::ng-deep .p-card .p-card-content {
+      background-color: inherit !important;
+      color: inherit !important;
+      padding: 0 !important;
+    }
+
+    /* Force card components to inherit theme colors */
+    :host ::ng-deep .p-card.p-component {
+      background-color: inherit !important;
+      color: inherit !important;
+    }
+
+    /* Divider theming */
+    :host ::ng-deep .p-divider {
+      border-color: var(--dialog-border-color) !important;
+    }
+
+    /* Responsive spacing */
+    @media (max-width: 768px) {
+      :host ::ng-deep .p-dialog-content {
+        padding: 1rem !important;
+      }
+
+      :host ::ng-deep .p-tabview .p-tabview-panels {
+        padding: 1rem !important;
+      }
+    }

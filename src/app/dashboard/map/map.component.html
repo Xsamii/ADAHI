@@ -1,5 +1,5 @@
 <div class="map-container p-5 pt-0 rounded-[0.34rem]">
-  <!-- <button (click)="testClick()">test query</button> --> 
+  <!-- <button (click)="testClick()">test query</button> -->
   <div id="map">
 
     <!-- <div class="mapView rounded-[0.34rem]" #mapView> -->
@@ -32,6 +32,20 @@
       </div>
     </app-card-modal>
     <app-side-widgets (toggleLegend)="showLegend()" />
+
+<app-maintenance-details
+  [visible]="maintenanceDialogVisible | async"
+  [equipmentData]="selectedEquipmentData | async"
+  [showRawData]="true"
+  (visibleChange)="onMaintenanceDialogClose()" >
+</app-maintenance-details>
+
+<app-maintenance-request-dialog
+  [visible]="maintenanceRequestDialogVisible | async"
+  [equipmentData]="selectedEquipmentData | async"
+  (visibleChange)="onMaintenanceRequestDialogClose()"
+  (requestSubmitted)="onMaintenanceRequestSubmitted($event)">
+</app-maintenance-request-dialog>
     <!-- </div> -->
   </div>
   </div>

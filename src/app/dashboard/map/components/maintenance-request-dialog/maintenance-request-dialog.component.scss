@@ -1,0 +1,163 @@
+.maintenance-request-dialog {
+  direction: rtl;
+}
+
+.dialog-content {
+  min-height: 400px;
+}
+
+/* PrimeNG Dialog Content Padding */
+:host ::ng-deep .p-dialog-content {
+  padding: 1.5rem !important;
+}
+
+/* PrimeNG Dialog Header Styling */
+:host ::ng-deep .p-dialog .p-dialog-header {
+  padding: 1rem 1.5rem !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+}
+
+/* PrimeNG Dialog Footer */
+:host ::ng-deep .p-dialog .p-dialog-footer {
+  padding: 1rem 1.5rem !important;
+  border-top: 1px solid #e5e7eb !important;
+}
+
+/* Dark theme for dialog */
+:host ::ng-deep .p-dialog.maintenance-request-dialog {
+  background-color: var(--dialog-bg-color) !important;
+  color: var(--dialog-text-color) !important;
+  border-radius: 8px !important;
+}
+
+:host ::ng-deep .p-dialog.maintenance-request-dialog .p-dialog-header {
+  background-color: var(--dialog-bg-color) !important;
+  color: var(--dialog-text-color) !important;
+  border-bottom: 1px solid var(--dialog-border-color) !important;
+}
+
+:host ::ng-deep .p-dialog.maintenance-request-dialog .p-dialog-content {
+  background-color: var(--dialog-bg-color) !important;
+  color: var(--dialog-text-color) !important;
+}
+
+:host ::ng-deep .p-dialog.maintenance-request-dialog .p-dialog-footer {
+  background-color: var(--dialog-bg-color) !important;
+  color: var(--dialog-text-color) !important;
+  border-top: 1px solid var(--dialog-border-color) !important;
+}
+
+/* Card styling with theme support */
+:host ::ng-deep .p-card {
+  margin-bottom: 1rem !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+:host ::ng-deep .p-card .p-card-body {
+  padding: 0.5rem 1.5rem 1.5rem 1.5rem !important;
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
+:host ::ng-deep .p-card .p-card-title {
+  padding: 1rem 1.5rem 0.5rem 1.5rem !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  background-color: inherit !important;
+  color: inherit !important;
+  margin: 0 !important;
+}
+
+:host ::ng-deep .p-card .p-card-content {
+  background-color: inherit !important;
+  color: inherit !important;
+  padding: 0 !important;
+}
+
+/* Force card components to inherit theme colors */
+:host ::ng-deep .p-card.p-component {
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
+/* Custom form input styling */
+:host ::ng-deep .custom-input {
+  background-color: var(--dialog-bg-color) !important;
+  color: var(--dialog-text-color) !important;
+  border-color: var(--dialog-border-color) !important;
+}
+
+:host ::ng-deep .custom-textarea {
+  background-color: var(--dialog-bg-color) !important;
+  color: var(--dialog-text-color) !important;
+  border-color: var(--dialog-border-color) !important;
+}
+
+/* Custom dropdown styling */
+:host ::ng-deep .custom-dropdown .p-dropdown {
+  background-color: var(--dialog-bg-color) !important;
+  color: var(--dialog-text-color) !important;
+  border-color: var(--dialog-border-color) !important;
+}
+
+:host ::ng-deep .custom-dropdown .p-dropdown-label {
+  background-color: var(--dialog-bg-color) !important;
+  color: var(--dialog-text-color) !important;
+}
+
+:host ::ng-deep .custom-dropdown .p-dropdown-panel {
+  background-color: var(--dialog-bg-color) !important;
+  color: var(--dialog-text-color) !important;
+  border-color: var(--dialog-border-color) !important;
+}
+
+:host ::ng-deep .custom-dropdown .p-dropdown-item {
+  background-color: var(--dialog-bg-color) !important;
+  color: var(--dialog-text-color) !important;
+}
+
+:host ::ng-deep .custom-dropdown .p-dropdown-item:hover {
+  background-color: var(--dialog-border-color) !important;
+}
+
+/* Custom calendar styling */
+:host ::ng-deep .custom-calendar .p-calendar .p-inputtext {
+  background-color: var(--dialog-bg-color) !important;
+  color: var(--dialog-text-color) !important;
+  border-color: var(--dialog-border-color) !important;
+}
+
+:host ::ng-deep .custom-calendar .p-datepicker {
+  background-color: var(--dialog-bg-color) !important;
+  color: var(--dialog-text-color) !important;
+  border-color: var(--dialog-border-color) !important;
+}
+
+/* Custom radio button styling */
+:host ::ng-deep .custom-radio .p-radiobutton .p-radiobutton-box {
+  background-color: var(--dialog-bg-color) !important;
+  border-color: var(--dialog-border-color) !important;
+}
+
+:host ::ng-deep .custom-radio .p-radiobutton .p-radiobutton-box.p-highlight {
+  background-color: #22c55e !important;
+  border-color: #22c55e !important;
+}
+
+/* Form field styling */
+.field {
+  margin-bottom: 1rem;
+}
+
+/* Input validation styling */
+.ng-invalid.ng-dirty {
+  border-color: #ef4444 !important;
+}
+
+/* Responsive spacing */
+@media (max-width: 768px) {
+  :host ::ng-deep .p-dialog-content {
+    padding: 1rem !important;
+  }
+}
